@@ -1,0 +1,11 @@
+
+<h4>{{user.username}}</h4>
+<!-- <p><a href="">submissions</a></p>
+<p><a href="">comments</a></p> -->
+<h4>Change Password</h4>
+<form id="submit_form" action="/reset" method="post">
+  <input type="hidden" value="{{user.username}}" name="username">
+  <input type="password" placeholder="current" name="password">
+  <input type="password" placeholder="new" name="new">
+  <button type="submit">Reset</button>
+</form>

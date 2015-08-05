@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+var app = require('../app');
+var config = require('../config.js');
+var pkg = require('../package.json');
+
+app.set('port', config.port || (process.env.PORT || 7001));
+
+var server = app.listen(app.get('port'), function() {
+  console.log(config.siteTitle, 'listening on port', server.address().port);
+  console.log('Scheduled Ranking every', config.scoreRefreshInterval);
+});

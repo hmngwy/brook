@@ -1,0 +1,28 @@
+{
+  "name": "Brook",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "agenda": "^0.6.28",
+    "body-parser": "^1.13.3",
+    "cookie-parser": "^1.3.5",
+    "cookie-session": "^1.2.0",
+    "express": "^4.13.3",
+    "express-handlebars": "^2.0.1",
+    "method-override": "^2.3.5",
+    "moment": "^2.10.6",
+    "mongoose": "^4.1.1",
+    "mongoose-deep-populate": "^1.1.0",
+    "mongoose-validators": "^0.1.0",
+    "morgan": "^1.6.1",
+    "node-restful": "^0.2.2",
+    "passport": "^0.2.2",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^1.0.1",
+    "serve-favicon": "^2.3.0",
+    "underscore": "^1.8.3"
+  }
+}

@@ -1,0 +1,7 @@
+<form class="reply_form" action="/xhr/comment" method="post" onsubmit="return send(this, true)">
+  <input type="hidden" name="pid" value="{{pid}}">
+  <input type="hidden" name="cid" value="{{cid}}">
+  <input type="hidden" name="type" value="{{type}}">
+  <textarea placeholder="Reply" name="body"></textarea>
+  <button type="submit">{{button_text}}</button> <span class="response"></span>
+</form>

@@ -1,0 +1,5 @@
+<b style="text-align:center;display:block;padding: 5em 0">{{message}}</b>
+{{#if error}}
+{{error.status}}
+<pre style="overflow:scroll;font-size:13px;line-height:1em;">{{error.stack}}</pre>
+{{/if}}

@@ -1,0 +1,92 @@
+<!--
+This site is a practice in code brevity.
+
+The front-end of this site is written with delivery speed as first priority.
+
+That should explain the brevity of the Stylesheet and Javascript f(x).
+
+There is also no toolbelt.
+
+No build scripts, no deploy code, no nothing.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>{{config.siteTitle}}</title>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/style.css">
+    <script type="text/javascript">
+    function send(f, reload) {
+      var reload = reload || false;
+      var elem   = f.elements;
+      var url    = f.action;
+      var params = "";
+      var value;
+
+      f.setAttribute('status', 'loading');
+
+      for (var i = 0; i < elem.length; i++) {
+        if (elem[i].tagName == "SELECT") {
+          value = elem[i].options[elem[i].selectedIndex].value;
+        } else {
+          value = elem[i].value;
+        }
+        params += elem[i].name + "=" + encodeURIComponent(value) + "&";
+      }
+
+      xmlhttp = new XMLHttpRequest();
+
+      xmlhttp.open("POST",url,false);
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200 || xmlhttp.status == 201) {
+          if(reload) window.location.reload();
+          var rdata = JSON.parse(xmlhttp.responseText);
+          f.setAttribute('status', 'ok');
+          f.getElementsByClassName('response')[0].innerHTML = '<a href="/topic/'+rdata._id+'">'+rdata.title+'</a>';
+        } else {
+          var rdata = JSON.parse(xmlhttp.responseText);
+          f.getElementsByClassName('response')[0].innerHTML = 'Check your input.';
+          f.setAttribute('status', 'bad');
+        }
+      };
+      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xmlhttp.send(params);
+
+      return false;
+    }
+
+    function vote(a) {
+      a.setAttribute("voted", "");
+      var ping = new Image();
+      ping.src = a.href;
+      return false;
+    }
+  </script>
+  </head>
+  <body id="home">
+    <div class="wrap">
+      <nav class="main">
+        <ul>
+          <li class="brand"><a href="/">{{config.siteTitle}}</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/rules">Rules</a></li>
+          {{^user}}
+          <li><a href="/register">Register</a></li>
+          <li><a href="/login">Login</a></li>
+          {{/user}}
+          {{#user}}
+          <li><a href="/user" class="handle">Account: {{username}}</a></li>
+          <li><a href="/logout">Logout</a></li>
+          {{/user}}
+        </ul>
+      </nav>
+
+
+      {{{body}}}
+
+      <footer>★</footer> <!-- end of homepage -->
+    </div>
+  </body>
+</html>

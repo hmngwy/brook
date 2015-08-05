@@ -1,0 +1,31 @@
+<main>
+  <div class="topic">
+    <div class="action">
+      <a onclick="return vote(this);" href="/xhr/post/{{post._id}}/upvote" class="act_upvote" {{isUpvotedPost post._id}}></a>
+    </div>
+    <div class="title">
+      <a {{#if post.url}}target="_blank" href="{{post.url}}"{{/if}} {{#unless post.url}}href="/topic/{{post._id}}"{{/unless}}class="link" >{{post.title}}</a>
+    </div>
+    <div class="meta">
+      <!-- {{post.score}} - {{post.score_c}} -->
+      <span class="score">{{post.votes}}</span> &mdash;
+      <a href="/user/{{post.op.username}}" class="byline">{{post.op.username}}</a>
+      <span class="timestamp">{{post.pretty_time}}</span>
+      <a href="/topic/{{_id}}" class="comment_count">{{post.comment_count}} comments</a>
+    </div>
+    <div class="body">
+      {{post.body}}
+    </div>
+  </div>
+  {{> comment button_text="Post" type="direct" pid=post.id}}
+
+  {{#if post.comment_count}}
+  <div class="comments">
+    <h4>Comments</h4>
+    <ul>
+      {{> comment_item c=post.direct_comments pid=post.id}}
+
+    </ul>
+  </div>
+  {{/if}}
+</main>

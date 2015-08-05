@@ -1,0 +1,18 @@
+{{#each c}}
+<li>
+  <div class="action">
+    <a onclick="return vote(this);" href="/xhr/comment/{{_id}}/upvote" class="act_upvote" {{isUpvotedComment _id}}></a>
+  </div>
+  <div class="body">
+    <a href="#" class="byline">{{op.username}}</a>
+    <span class="timestamp">{{pretty_time}}</span>
+    {{body}}
+  </div>
+  {{> comment type="thread" pid=../pid cid=id}}
+
+  <ul>
+    {{> comment_item c=responses pid=../pid}}
+  </ul>
+
+</li>
+{{/each}}

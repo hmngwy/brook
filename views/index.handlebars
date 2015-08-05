@@ -1,0 +1,34 @@
+{{#if user}}
+{{> submit}}
+{{/if}}
+{{#unless user}}
+<p class="invitation">
+  <strong>Register or Login to Post</strong>
+</p>
+{{/unless}}
+<main>
+  <ol id="topic_list">
+    {{#posts}}
+    <li>
+      <div class="action">
+        <a onclick="return vote(this);" href="/xhr/post/{{_id}}/upvote" class="act_upvote" {{isUpvotedPost _id}}></a>
+      </div>
+      <div class="title">
+        <a {{#if url}}target="_blank" href="{{url}}"{{/if}} {{#unless url}}href="/topic/{{_id}}"{{/unless}}class="link" >{{title}}</a>
+      </div>
+      <div class="meta">
+        <!-- {{score}} - {{score_c}} -->
+        <span class="votes">{{votes}}</span> &mdash;
+        <a href="/user/{{op.username}}" class="byline">{{op.username}}</a> &mdash;
+        <span class="timestamp">{{pretty_time}}</span> &mdash;
+        <a href="/topic/{{_id}}" class="comment_count">{{comment_count}} comments</a>
+        <!-- in <a href="#" class="channel">{{channel}}</a> -->
+      </div>
+    </li>
+    {{/posts}}
+  </ol>
+  <center>
+    {{#if p}}<a href="/p/{{p}}" class="next">Newer</a> &mdash;{{/if}}
+    <a href="/p/{{lastScoreC posts}}" class="next">Older </a>
+  </center>
+</main>
