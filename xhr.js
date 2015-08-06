@@ -48,7 +48,7 @@ postResource.route("upvote", {
                doc.votes++;
                doc.save();
 
-               doc.op.votes++;
+               doc.op.votes_received++;
                doc.op.save();
              }
            }
@@ -92,8 +92,10 @@ commentResource.after('post', function(req, res, next){
   if(res.locals.bundle._id) {
 
     // add comment._id to user comments history
-    req.user.posts_commented.push(res.locals.bundle.pid); //should we post PID instead
-    req.user.comments.push(res.locals.bundle._id); //should we post PID instead
+    if(req.user.posts_commented.indexOf(res.locals.bundle.pid)===-1) {
+      req.user.posts_commented.push(res.locals.bundle.pid);
+    }
+    req.user.comments.push(res.locals.bundle._id);
     req.user.save();
 
     // find root post to push comment
@@ -157,7 +159,7 @@ commentResource.route("upvote", {
                doc.votes++;
                doc.save();
 
-               doc.op.votes++;
+               doc.op.votes_received++;
                doc.op.save();
                //TODO increment op karma here
              }

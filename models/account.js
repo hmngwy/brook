@@ -14,15 +14,25 @@ var validators = require('mongoose-validators');
 // karma is decreased the more unworthy posts they have
 
 var Account = new Schema({
-  votes : { type: Number, default: 0 },
+  //sum of votes user received from all his posts and comments
+  votes_received : { type: Number, default: 0 },
+  // user post submissions
   posts : [ { type: Schema.Types.ObjectId, ref: 'Post' } ],
-  posts_commented: [ { type: Schema.Types.ObjectId, ref: 'Post' } ],
+  // user comment submissions
   comments : [ { type: Schema.Types.ObjectId, ref: 'Comment' } ],
+  // posts user enaged in
+  posts_commented: [ { type: Schema.Types.ObjectId, ref: 'Post' } ],
+  // comments and posts user upvoted
   upvoted_posts : [ { type: Schema.Types.ObjectId, ref: 'Post' } ],
   upvoted_comments : [ { type: Schema.Types.ObjectId, ref: 'Comment' } ],
+  // user register date
   ts_created: { type: Date, default: Date.now },
-  role: {type: String, enum: ['super', 'admin', 'editor', 'moderator', 'basic'], default: 'basic' },
+  // role assigned by admin
+  role: { type: String,
+    enum: ['super', 'admin', 'editor', 'moderator', 'basic'], default: 'basic' },
+  // violations issued by moderators
   violations: [{ ts_created: {type: Date, default: Date.now, index: false}, message: {type: String, index:false} }],
+  // messages auto created by the system
   notifications: [{ ts_created: {type: Date, default: Date.now, index: false}, message: {type: String, index:false} }]
 });
 
