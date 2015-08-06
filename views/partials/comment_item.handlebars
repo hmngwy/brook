@@ -5,6 +5,7 @@
     <a onclick="return vote(this);" href="/xhr/comment/{{_id}}/upvote" class="act_upvote" {{isUpvotedComment _id}}></a>
   </div>
   <div class="body">
+    {{#if votes}}<span class="votes">{{votes}}</span> &mdash;{{/if}}
     <a href="#" class="byline">{{op.username}}</a>
     <span class="timestamp">{{timeFromNow ts_created}}</span>
     {{body}}

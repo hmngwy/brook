@@ -12,6 +12,7 @@ var Comment = new Schema({
   body:   { type: String, validate: [validators.isLength({}, 10, 512)] },
   ts_created: { type: Date, default: Date.now },
   responses: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
+  votes:      { type: Number, default: 0 },
   // cid: { type: Schema.Types.ObjectId, ref: 'Comment' },
   pid: { type: Schema.Types.ObjectId, ref: 'Post' },
   op: { type: Schema.Types.ObjectId, ref: 'Account' }
