@@ -74,7 +74,9 @@ router.post('/register', function(req, res, next) {
 });
 
 router.get('/user', function(req, res) {
-  req.user.populate('posts', function(err, user){
+  req.user.populate([{path:'posts', select:'title ts_created',
+  options: { limit: 50 }}, {path:'posts_commented', select:'title ts_created',
+  options: { limit: 50 }}], function(err, user){
     res.render('user', { user: user, config: config });
   });
 });

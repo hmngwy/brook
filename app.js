@@ -77,6 +77,7 @@ passport.deserializeUser(Account.deserializeUser());
 
 app.use(function(req, res, next){
   req.user.notifications = req.user.notifications.reverse();
+  req.user.notifications = req.user.notifications.slice(0, 50);
   next();
 });
 

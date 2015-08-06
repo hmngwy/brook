@@ -58,7 +58,9 @@ nav.main {
 }
 .user_list {
   padding: .7em 2em;
-  background: white;
+  border: 1px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  border-radius: 4px;
   line-height: 1.6em;
   font-size: .8em;
   max-height: 10em;
@@ -108,7 +110,7 @@ a {
 .meta a,
 .response a,
 .textwall a,
-.notifications a,
+.user_list a,
 .next {
   text-decoration: none;
   background-image: -webkit-linear-gradient(rgba(70, 70, 70, 0.25) 0%, rgb(70, 70, 70) 100%);
@@ -123,7 +125,7 @@ a {
   .meta a,
   .response a,
   .textwall a,
-  .notifications a,
+  .user_list a,
   .next {
     background-image: -webkit-linear-gradient(rgba(70, 70, 70, 0.25) 0%, rgb(70, 70, 70) 100%);
     background-image: linear-gradient(rgba(70, 70, 70, 0.25) 0%, rgb(70, 70, 70) 100%);
