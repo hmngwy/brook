@@ -6,6 +6,8 @@ The ranking algorithm is based on Ken Shirrif's [findings](http://www.righto.com
 
 #### Roadmap
 
+[![Join the chat at https://gitter.im/hmngwy/brook](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hmngwy/brook?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 The app does not cover the following yet, but I plan to add them in soon.
 
 **0. User Functions**, <strike>notifications, listing submissions and comments,</strike> basic karma (non formulaic), banning
