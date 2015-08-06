@@ -5,15 +5,10 @@ var passportLocalMongoose = require('passport-local-mongoose');
 var validators = require('mongoose-validators');
 
 
-// TODO compute karma like this
-// base = posts+comments
-// base + sum_of_votes / base
-// we add the base so that min is 1
-// we dived the base so that users are encouraged to post quality content
-// because the more unworthy content they post the larger the karma divisor
-// karma is decreased the more unworthy posts they have
 
 var Account = new Schema({
+  //sum of votes user received from all his posts and comments
+  karma : { type: Number, default: 0 },
   //sum of votes user received from all his posts and comments
   votes_received : { type: Number, default: 0 },
   // user post submissions
@@ -36,6 +31,27 @@ var Account = new Schema({
   notifications: [{ ts_created: {type: Date, default: Date.now, index: false}, message: {type: String, index:false} }]
 });
 
-Account.plugin(passportLocalMongoose, {});
+Account.plugin(passportLocalMongoose, {
+  userExistsError: 'userExistsError'
+});
+
+Account.pre('save', function(next){
+
+  // TODO compute karma like this
+  // base = posts + (comments/7)
+  // karma = base + sum_of_votes / base
+  // we divide comment count by 7, a comment is 1/7 of a post
+  // we dived the base so that users are encouraged to post quality content
+
+  // theory, this is more of a quality index
+  // with less posts and more votes, you get a higher number
+  // implies you have a high ratio of quality posts
+  var base = this.posts.length + (this.comments.length / 7);
+  var karma = (base + this.votes_received) / base;
+
+  this.karma = Math.round(karma);
+
+  next();
+});
 
 module.exports.model = mongoose.model('Account', Account);

@@ -74,11 +74,12 @@ nav.main {
   padding: 1ch;
 }
 .banner.bad {
-  text-align: center;
   background-color: #D29A9A;
   color: maroon;
-  border-radius: 2px;
-  padding: 1ch;
+}
+.banner.mild {
+  background-color: lightgrey;
+  color: steelblue;
 }
 main {
   margin: 2em 0;
@@ -159,6 +160,18 @@ a {
   right: calc(100% + 1em);
   top: 0;
 }
+.votes {
+  display: block;
+  text-align: center;
+  font-size: .75em;
+}
+.karma {
+  font-size: .8em;
+  font-weight: bold;
+  color: grey;
+}
+.karma:before {content: '[';}
+.karma:after {content: ']';}
 .act_upvote {
   display: inline-block;
   line-height: 18px;
@@ -201,9 +214,6 @@ a {
 .meta {
   color: #555;
   font-size: .88888em;
-}
-.votes {
-  font-weight:bold;
 }
 form {
   margin-bottom: 2em;

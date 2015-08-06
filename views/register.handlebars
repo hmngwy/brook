@@ -1,5 +1,6 @@
+<h4>Register</h4>
+{{#if taken}}<p class="banner mild">That username is taken, please try another.</p>{{/if}}
 <form id="register_form" action="/register" method="post">
-  <h4>REGISTER</h4>
   <input type="text" placeholder="handle" name="username">
   <input type="password" placeholder="password" name="password">
   <button  type="submit">Register</button>

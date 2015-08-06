@@ -59,17 +59,22 @@ router.get('/topic/:id', function(req, res) {
 });
 
 router.get('/register', function(req, res) {
-  res.render('register', {config: config});
+  res.render('register', {config: config, taken:req.query.taken!=undefined});
 });
 
 router.post('/register', function(req, res, next) {
   console.log('registering user');
   Account.register(new Account({ username: req.body.username }), req.body.password, function(err) {
-    if (err) { console.log('error while user register!', err); return next(err); }
+    if (err) {
+      console.log('error while user register!', err);
+      if(err.message.indexOf('userExistsError')===0) {
+         return res.redirect('/register?taken=✔︎');
+      } else {
+        return next(err);
+      }
+    }
 
-    console.log('user registered!');
-
-    res.redirect('/');
+    res.redirect('/login?register=✔︎');
   });
 });
 
@@ -82,7 +87,7 @@ router.get('/user', function(req, res) {
 });
 
 router.get('/login', function(req, res) {
-  res.render('login', { user: req.user, config: config, try_again:req.query.try!=undefined });
+  res.render('login', { user: req.user, config: config, try_again:req.query.try!=undefined, register_ok:req.query.register!=undefined });
 });
 
 router.post('/login', function(req, res, next) {

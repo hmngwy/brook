@@ -91,10 +91,11 @@ commentResource.after('post', function(req, res, next){
 
   if(res.locals.bundle._id) {
 
-    // add comment._id to user comments history
+    // add comment parent topic (pid) to user history
     if(req.user.posts_commented.indexOf(res.locals.bundle.pid)===-1) {
       req.user.posts_commented.push(res.locals.bundle.pid);
     }
+    // add comment._id to user history
     req.user.comments.push(res.locals.bundle._id);
     req.user.save();
 

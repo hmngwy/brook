@@ -38,7 +38,7 @@ Post.pre('save', function(next){
   // compute score here, modularize for agenda later
   var actualVotes = this.votes;
 
-  // a comment is 1/5 the worth of a vote
+  // a comment is 1/7 the worth of a vote
   var commentBump = this.comments.length / 7;
   actualVotes += commentBump;
 
@@ -74,7 +74,6 @@ Post.pre('save', function(next){
   console.log(this.score_c);
 
   next();
-  // next();
 });
 
 // module.exports = mongoose.model('Post', Post);

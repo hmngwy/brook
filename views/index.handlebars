@@ -12,14 +12,14 @@
     <li>
       <div class="action">
         <a onclick="return vote(this);" href="/xhr/post/{{_id}}/upvote" class="act_upvote" {{isUpvotedPost _id}}></a>
+        <span class="votes">{{votes}}</span>
       </div>
       <div class="title">
         <a {{#if url}}target="_blank" href="{{url}}"{{/if}} {{#unless url}}href="/topic/{{_id}}"{{/unless}}class="link" >{{title}}</a>
       </div>
       <div class="meta">
         <!-- {{score}} - {{score_c}} -->
-        <span class="votes">{{votes}}</span> &mdash;
-        <a href="/user/{{op.username}}" class="byline">{{op.username}}</a> &mdash;
+        <a href="/user/{{op.username}}" class="byline">{{op.username}}</a> <span class="karma">{{op.karma}}</span> &mdash;
         <span class="timestamp">{{timeFromNow ts_created}}</span> &mdash;
         <a href="/topic/{{_id}}" class="comment_count">{{count comments}} comments</a>
         <!-- in <a href="#" class="channel">{{channel}}</a> -->
