@@ -8,7 +8,7 @@ The ranking algorithm is based on Ken Shirrif's [findings](http://www.righto.com
 
 The app does not cover the following yet, but I plan to add them in soon.
 
-**0. User Functions**, notifications, listing submissions and comments, basic karma (non formulaic), banning
+**0. User Functions**, <strike>notifications, listing submissions and comments,</strike> basic karma (non formulaic), banning
 
 **1. Filters**, like "New", "Show", or "Ask". Based on user input or moderation.
 
