@@ -73,6 +73,13 @@ nav.main {
   border-radius: 2px;
   padding: 1ch;
 }
+.banner.bad {
+  text-align: center;
+  background-color: #D29A9A;
+  color: maroon;
+  border-radius: 2px;
+  padding: 1ch;
+}
 main {
   margin: 2em 0;
 }

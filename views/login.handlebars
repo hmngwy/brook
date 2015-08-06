@@ -1,5 +1,6 @@
 <form id="register_form" action="/login" method="post">
   <h4>LOGIN</h4>
+  {{#if try_again}}<p class="banner bad">Try again.  </p>{{/if}}
   <input type="text" placeholder="handle" name="username">
   <input type="password" placeholder="password" name="password">
   <button  type="submit">Login</button>

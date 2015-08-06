@@ -77,19 +77,19 @@ router.get('/user', function(req, res) {
   req.user.populate([{path:'posts', select:'title ts_created',
   options: { limit: 50 }}, {path:'posts_commented', select:'title ts_created',
   options: { limit: 50 }}], function(err, user){
-    res.render('user', { user: user, config: config, password_reset:req.query.password!=undefined });
+    res.render('user', { user: user, config: config, password_reset:req.query.password!=undefined, try_again:req.query.try!=undefined });
   });
 });
 
 router.get('/login', function(req, res) {
-  res.render('login', { user: req.user, config: config });
+  res.render('login', { user: req.user, config: config, try_again:req.query.try!=undefined });
 });
 
 router.post('/login', function(req, res, next) {
 
   passport.authenticate('local', function(err, user, info) {
     if (err) { return next(err); }
-    if (!user) { return res.redirect('/login'); }
+    if (!user) { return res.redirect('/login?try=✔︎'); }
     req.logIn(user, function(err) {
       if (err) { return next(err); }
       return res.redirect('/');
@@ -103,25 +103,26 @@ router.get('/logout', function(req, res) {
 });
 
 
-router.post('/reset', passport.authenticate('local'), function(req, res, next) {
+router.post('/reset', function(req, res, next) {
 
-  if(req.user) {
+  passport.authenticate('local', function(err, user, info) {
+    if(user) {
 
-      // console.log(req.params);
-      req.user.setPassword(req.body.new, function(err){
-        if(err) {
-          err.status = 400;
-          next(err);
-        } else{
-          req.user.save();
-          res.redirect('/user?password=✔︎');
-        }
+        user.setPassword(req.body.new, function(err){
+          if(err) {
+            err.status = 400;
+            next(err);
+          } else{
+            user.save();
+            res.redirect('/user?password=✔︎');
+          }
 
-      });
+        });
 
-  } else {
-    res.redirect('/login?try');
-  }
+    } else {
+      res.redirect('/user?try=✔︎');
+    }
+  })(req, res, next);
 
 });
 
