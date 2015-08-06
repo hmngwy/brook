@@ -77,7 +77,7 @@ router.get('/user', function(req, res) {
   req.user.populate([{path:'posts', select:'title ts_created',
   options: { limit: 50 }}, {path:'posts_commented', select:'title ts_created',
   options: { limit: 50 }}], function(err, user){
-    res.render('user', { user: user, config: config });
+    res.render('user', { user: user, config: config, password_reset:req.query.password!=undefined });
   });
 });
 
@@ -104,23 +104,25 @@ router.get('/logout', function(req, res) {
 
 
 router.post('/reset', passport.authenticate('local'), function(req, res, next) {
-  var Account = require('./models/account').model;
-  Account.findOne({_id:req.user._id}).exec(function(err, a){
-    if(a) {
+
+  if(req.user) {
+
       // console.log(req.params);
-      a.setPassword(req.body.new, function(err){
+      req.user.setPassword(req.body.new, function(err){
         if(err) {
           err.status = 400;
           next(err);
         } else{
-          a.save();
-          res.redirect('/user');
+          req.user.save();
+          res.redirect('/user?password=✔︎');
         }
 
       });
 
-    }
-  });
+  } else {
+    res.redirect('/login?try');
+  }
+
 });
 
 
