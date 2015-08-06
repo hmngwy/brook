@@ -1,5 +1,4 @@
 var passport = require('passport');
-var Account = require('./models/account');
 var router = require('express').Router();
 var config = require('./config');
 var _ = require('underscore');
@@ -7,6 +6,7 @@ var moment = require('moment');
 
 var Post = require('./models/post').model;
 var Comment = require('./models/comment').model;
+var Account = require('./models/account').model;
 
 router.get('/', function(req, res) {
   Post.find()
