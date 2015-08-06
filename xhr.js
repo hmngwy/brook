@@ -38,14 +38,17 @@ postResource.route("upvote", {
 
       if(req.user.upvoted_posts.indexOf(req.params.id) === -1) { // user hasn't upvoted it yet
 
-        Post.findOne({_id:req.params.id}).exec(function (err, doc) {
+        Post.findOne({_id:req.params.id}).populate('op').exec(function (err, doc) {
            if(doc) {
-             // increment post.votes
-             doc.votes = doc.votes + 1;
-             doc.save();
-             // add post._id to user post votes history
-             req.user.upvoted_posts.push(doc._id);
-             req.user.save();
+             if(req.user.upvoted_posts.indexOf(doc._id)===-1) {
+               // add post._id to user post votes history
+               req.user.upvoted_posts.push(doc._id);
+               req.user.save();
+               // increment post.votes
+               doc.votes++;
+               doc.op.karma++;
+               doc.save();
+             }
            }
         });
 
@@ -142,14 +145,18 @@ commentResource.route("upvote", {
 
       if(req.user.upvoted_comments.indexOf(req.params.id) === -1) { // user hasn't upvoted it yet
 
-        Comment.findOne({_id:req.params.id}).exec(function (err, doc) {
+        Comment.findOne({_id:req.params.id}).populate('op').exec(function (err, doc) {
            if(doc) {
-             // increment comment.votes
-             doc.votes = doc.votes + 1;
-             doc.save();
-             // add comment._id to user comment votes history
-             req.user.upvoted_comments.push(doc._id);
-             req.user.save();
+             if(req.user.upvoted_comments.indexOf(doc._id)===-1) {
+               // add comment._id to user comment votes history
+               req.user.upvoted_comments.push(doc._id);
+               req.user.save();
+               // increment comment.votes
+               doc.votes++;
+               doc.op.votes++;
+               doc.save();
+               //TODO increment op karma here
+             }
            }
         });
 

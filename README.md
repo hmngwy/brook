@@ -2,7 +2,7 @@
 
 **Brook** is a linkboard heavily inspired by HN. It runs on Node.JS and MongoDB.
 
-Written with both code brevity and page speed in mind, so beware the basic scripting in the frontend.
+Written with both frontend brevity and delivery speed in mind, so beware the basic scripting and vanilla CSS. *(gasp!)*
 
 The ranking algorithm is based on Ken Shirrif's [findings](http://www.righto.com/2013/11/how-hacker-news-ranking-really-works.html) [(and here)](http://www.righto.com/2009/06/how-does-newsyc-ranking-work.html) on his research about YCombinator's Hacker News ranking.
 

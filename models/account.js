@@ -5,6 +5,7 @@ var passportLocalMongoose = require('passport-local-mongoose');
 var validators = require('mongoose-validators');
 
 var Account = new Schema({
+  votes : { type: Number, default: 0 },
   posts : [ { type: Schema.Types.ObjectId, ref: 'Post' } ],
   posts_commented: [ { type: Schema.Types.ObjectId, ref: 'Post' } ],
   comments : [ { type: Schema.Types.ObjectId, ref: 'Comment' } ],
