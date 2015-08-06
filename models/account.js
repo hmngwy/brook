@@ -4,6 +4,15 @@ var passportLocalMongoose = require('passport-local-mongoose');
 
 var validators = require('mongoose-validators');
 
+
+// TODO compute karma like this
+// base = posts+comments
+// base + sum_of_votes / base
+// we add the base so that min is 1
+// we dived the base so that users are encouraged to post quality content
+// because the more unworthy content they post the larger the karma divisor
+// karma is decreased the more unworthy posts they have
+
 var Account = new Schema({
   votes : { type: Number, default: 0 },
   posts : [ { type: Schema.Types.ObjectId, ref: 'Post' } ],

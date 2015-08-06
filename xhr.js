@@ -46,8 +46,10 @@ postResource.route("upvote", {
                req.user.save();
                // increment post.votes
                doc.votes++;
-               doc.op.karma++;
                doc.save();
+
+               doc.op.votes++;
+               doc.op.save();
              }
            }
         });
@@ -153,8 +155,10 @@ commentResource.route("upvote", {
                req.user.save();
                // increment comment.votes
                doc.votes++;
-               doc.op.votes++;
                doc.save();
+
+               doc.op.votes++;
+               doc.op.save();
                //TODO increment op karma here
              }
            }
