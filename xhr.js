@@ -26,7 +26,7 @@ postResource.before('post', function(req, res, next){
 postResource.after('post', function(req, res, next){
   if(res.locals.bundle._id) {
     // add post._id to user posts history (user.posts)
-    Account.findOne({_id:res.locals.bundle.op}).exec(function(err, account){
+    Account.findOne({_id:req.user._id}).exec(function(err, account){
       if(account) {
         account.posts.push(res.locals.bundle._id);
         account.save();
@@ -93,12 +93,11 @@ commentResource.after('post', function(req, res, next){
 
   if(res.locals.bundle._id) {
 
-    console.log('here', res.locals.bundle._id);
-
     // add comment._id to user comments history
-    Account.findOne({_id:res.locals.bundle.op}).exec(function(err, account){
+    Account.findOne({_id:req.user._id}).exec(function(err, account){
       if(account) {
-        account.comments.push(res.locals.bundle._id);
+        account.posts_commented.push(res.locals.bundle.pid); //should we post PID instead
+        account.comments.push(res.locals.bundle._id); //should we post PID instead
         account.save();
       }
     });
