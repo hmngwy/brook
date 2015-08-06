@@ -22,6 +22,8 @@ agenda.define('recalculate scores', function(job, done) {
 
 });
 
+//TODO scheduled notifications purge every 30 days
+
 agenda.every(config.scoreRefreshInterval, 'recalculate scores');
 
 module.exports = agenda;

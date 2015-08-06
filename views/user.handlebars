@@ -1,5 +1,18 @@
 
-<h4>{{user.username}}</h4>
+<h4>Handle: {{user.username}}</h4>
+
+<h4>Notifications</h4>
+<ul class="notifications user_list">
+  {{#each user.notifications}}
+  <li>{{timeFromNow ts_created}}: {{{message}}}</li>
+  {{/each}}
+</ul>
+<h4>Submissions</h4>
+<ul class="user_list">
+  {{#each user.posts}}
+  <li>{{timeFromNow ts_created}}: <a href="/topic/{{_id}}">{{{title}}}</a></li>
+  {{/each}}
+</ul>
 <!-- <p><a href="">submissions</a></p>
 <p><a href="">comments</a></p> -->
 <h4>Change Password</h4>
@@ -9,8 +22,3 @@
   <input type="password" placeholder="new" name="new">
   <button type="submit">Reset</button>
 </form>
-<ul class="notifications">
-  {{#each user.notifications}}
-  <li>{{timeFromNow ts_created}}: {{{message}}}</li>
-  {{/each}}
-</ul>

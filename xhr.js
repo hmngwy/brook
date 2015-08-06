@@ -2,7 +2,6 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var Post = require('./models/post').model;
-var Account = require('./models/account').model;
 var Comment = require('./models/comment').model;
 
 var postResource = require('./models/post').model
@@ -26,12 +25,8 @@ postResource.before('post', function(req, res, next){
 postResource.after('post', function(req, res, next){
   if(res.locals.bundle._id) {
     // add post._id to user posts history (user.posts)
-    Account.findOne({_id:req.user._id}).exec(function(err, account){
-      if(account) {
-        account.posts.push(res.locals.bundle._id);
-        account.save();
-      }
-    });
+    req.user.posts.push(res.locals.bundle._id);
+    req.user.save();
   }
   next();
 });
@@ -43,17 +38,15 @@ postResource.route("upvote", {
 
       if(req.user.upvoted_posts.indexOf(req.params.id) === -1) { // user hasn't upvoted it yet
 
-        Account.findOne({_id: req.user._id}).exec(function (err, user) {
-          Post.findOne({_id:req.params.id}).exec(function (err, doc) {
-             if(doc) {
-               // increment post.votes
-               doc.votes = doc.votes + 1;
-               doc.save();
-               // add post._id to user post votes history
-               user.upvoted_posts.push(doc._id);
-               user.save();
-             }
-          });
+        Post.findOne({_id:req.params.id}).exec(function (err, doc) {
+           if(doc) {
+             // increment post.votes
+             doc.votes = doc.votes + 1;
+             doc.save();
+             // add post._id to user post votes history
+             req.user.upvoted_posts.push(doc._id);
+             req.user.save();
+           }
         });
 
       }
@@ -94,13 +87,9 @@ commentResource.after('post', function(req, res, next){
   if(res.locals.bundle._id) {
 
     // add comment._id to user comments history
-    Account.findOne({_id:req.user._id}).exec(function(err, account){
-      if(account) {
-        account.posts_commented.push(res.locals.bundle.pid); //should we post PID instead
-        account.comments.push(res.locals.bundle._id); //should we post PID instead
-        account.save();
-      }
-    });
+    req.user.posts_commented.push(res.locals.bundle.pid); //should we post PID instead
+    req.user.comments.push(res.locals.bundle._id); //should we post PID instead
+    req.user.save();
 
     // find root post to push comment
     Post.findOne({_id: req.body.pid}).populate('op').exec(function(err, post){
@@ -153,17 +142,15 @@ commentResource.route("upvote", {
 
       if(req.user.upvoted_comments.indexOf(req.params.id) === -1) { // user hasn't upvoted it yet
 
-        Account.findOne({_id: req.user._id}).exec(function (err, user) {
-          Comment.findOne({_id:req.params.id}).exec(function (err, doc) {
-             if(doc) {
-               // increment comment.votes
-               doc.votes = doc.votes + 1;
-               doc.save();
-               // add comment._id to user comment votes history
-               user.upvoted_comments.push(doc._id);
-               user.save();
-             }
-          });
+        Comment.findOne({_id:req.params.id}).exec(function (err, doc) {
+           if(doc) {
+             // increment comment.votes
+             doc.votes = doc.votes + 1;
+             doc.save();
+             // add comment._id to user comment votes history
+             req.user.upvoted_comments.push(doc._id);
+             req.user.save();
+           }
         });
 
       }

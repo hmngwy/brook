@@ -74,7 +74,9 @@ router.post('/register', function(req, res, next) {
 });
 
 router.get('/user', function(req, res) {
-  res.render('user', { user: req.user, config: config });
+  req.user.populate('posts', function(err, user){
+    res.render('user', { user: user, config: config });
+  });
 });
 
 router.get('/login', function(req, res) {

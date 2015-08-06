@@ -6,6 +6,7 @@ var validators = require('mongoose-validators');
 
 var Account = new Schema({
   posts : [ { type: Schema.Types.ObjectId, ref: 'Post' } ],
+  posts_commented: [ { type: Schema.Types.ObjectId, ref: 'Post' } ],
   comments : [ { type: Schema.Types.ObjectId, ref: 'Comment' } ],
   upvoted_posts : [ { type: Schema.Types.ObjectId, ref: 'Post' } ],
   upvoted_comments : [ { type: Schema.Types.ObjectId, ref: 'Comment' } ],
