@@ -1,11 +1,12 @@
 {{#each c}}
-<li>
+<li id="comment-{{_id}}">
+  <a name="comment-{{_id}}"></a>
   <div class="action">
     <a onclick="return vote(this);" href="/xhr/comment/{{_id}}/upvote" class="act_upvote" {{isUpvotedComment _id}}></a>
   </div>
   <div class="body">
     <a href="#" class="byline">{{op.username}}</a>
-    <span class="timestamp">{{pretty_time}}</span>
+    <span class="timestamp">{{timeFromNow ts_created}}</span>
     {{body}}
   </div>
   {{> comment type="thread" pid=../pid cid=id}}

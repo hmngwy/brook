@@ -9,6 +9,7 @@ var exphbs  = require('express-handlebars');
 var methodOverride = require('method-override');
 var config = require('./config');
 
+var moment = require('moment');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -34,6 +35,14 @@ var hbs = exphbs.create({
       if(context.data.root.user)
         if(context.data.root.user.upvoted_posts.indexOf(id) !== -1) return 'voted';
       else return '';
+    },
+    timeFromNow: function (date, context) {
+      // console.log(context);
+      return moment(date).fromNow();
+    },
+    count: function (array, context) {
+      // console.log(context);
+      return array.length;
     }
   }
 });
@@ -65,6 +74,11 @@ passport.use(new LocalStrategy(Account.authenticate()));
 
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
+
+app.use(function(req, res, next){
+  req.user.notifications = req.user.notifications.reverse();
+  next();
+});
 
 // Connect mongoose
 mongoose.connect(config.mongoConnectionString, function(err) {

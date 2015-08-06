@@ -1,7 +1,6 @@
 var passport = require('passport');
 var router = require('express').Router();
 var config = require('./config');
-var _ = require('underscore');
 var moment = require('moment');
 
 var Post = require('./models/post').model;
@@ -15,11 +14,6 @@ router.get('/', function(req, res) {
   .limit(config.pageCount)
   .exec(function(err, posts){
     if(posts.length) {
-      posts = _.map(posts, function(post){
-        post.pretty_time = moment(post.ts_created).fromNow();
-        post.comment_count = post.comments.length;
-        return post;
-      });
       res.render('index', { user: req.user, posts: posts, config: config });
     } else {
       res.render('index', { user: req.user, posts: [], config: config });
@@ -34,11 +28,6 @@ router.get('/p/:n', function(req, res, next) {
   .limit(config.pageCount)
   .exec(function(err, posts){
     if(posts.length) {
-      posts = _.map(posts, function(post){
-        post.pretty_time = moment(post.ts_created).fromNow();
-        post.comment_count = post.comments.length;
-        return post;
-      });
       res.render('index', { user: req.user, posts: posts, config: config });
     } else {
       var err = new Error('Page Empty');
@@ -53,20 +42,15 @@ router.get('/topic/:id', function(req, res) {
   Post.findOne({_id:req.params.id}).populate('direct_comments').populate('op').exec(function(err, post){
     if(post) {
 
-      post.pretty_time = moment(post.ts_created).fromNow();
       post.comment_count = post.comments.length;
 
+      // TODO have the depth here configurable in config.js
       Comment.deepPopulate(post.direct_comments,
         'op, '+
         'responses.op, responses.responses.op, responses.responses.responses.op, responses.responses.responses.responses.op, '+
         'responses.responses.responses.responses', function(err, data){
 
         // TODO Cache 'data'
-
-        post.direct_comments = _.map(data, function(comment){
-          comment.pretty_time = moment(comment.ts_created).fromNow();
-          return comment;
-        });
         res.render('topic', { user: req.user, post: post, config: config });
       });
 

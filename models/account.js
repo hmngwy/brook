@@ -11,7 +11,8 @@ var Account = new Schema({
   upvoted_comments : [ { type: Schema.Types.ObjectId, ref: 'Comment' } ],
   ts_created: { type: Date, default: Date.now },
   role: {type: String, enum: ['super', 'admin', 'editor', 'moderator', 'basic'], default: 'basic' },
-  violations: [{type: String}]
+  violations: [{type: String}],
+  notifications: [{ ts_created: {type: Date, default: Date.now, index: false}, message: {type: String, index:false} }]
 });
 
 Account.plugin(passportLocalMongoose, {});

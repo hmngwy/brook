@@ -100,6 +100,7 @@ a {
 .meta a,
 .response a,
 .textwall a,
+.notifications a,
 .next {
   text-decoration: none;
   background-image: -webkit-linear-gradient(rgba(70, 70, 70, 0.25) 0%, rgb(70, 70, 70) 100%);
@@ -114,6 +115,7 @@ a {
   .meta a,
   .response a,
   .textwall a,
+  .notifications a,
   .next {
     background-image: -webkit-linear-gradient(rgba(70, 70, 70, 0.25) 0%, rgb(70, 70, 70) 100%);
     background-image: linear-gradient(rgba(70, 70, 70, 0.25) 0%, rgb(70, 70, 70) 100%);
@@ -165,6 +167,9 @@ a {
   position: initial;
   float: left;
   margin-right: .75em;
+}
+.comments .action {
+  margin-right: .5em;
 }
 .topic .link {
   display: inline;
@@ -241,7 +246,6 @@ form[status="bad"] button {
 .comments {
   padding-top: 1ch;
   border-top: solid 1px #ccc;
-  max-width: 90%;
   margin: auto;
   font-size: .8888888em;
 }
@@ -271,11 +275,17 @@ form[status="bad"] button {
   border: 0;
 }
 .comments li {
+  box-sizing: border-box;
   position: relative;
+  /*margin-bottom: 2ch;*/
+}
+.comments li:target .timestamp,
+.comments li:target .byline {
+  color: green;
 }
 .comments li li {
   position: relative;
-  padding-left: 2.5ch;
+  padding-left: 2.8em;
 }
 .comments .body {
   padding-left: 2ch;
@@ -290,20 +300,22 @@ form[status="bad"] button {
 .comments .timestamp {
   color: #777;
 }
-
+.comments .act_upvote {
+    padding: .5em .2em;
+}
 .comments form {
-  margin-bottom: 3ch;
+  margin-bottom: 0;
 }
 .comments .reply_form textarea {
-  width: calc(100% - 3em);
-  max-width: calc(100% - 3em);
+  width: calc(100% - 4.3em);
+  max-width: calc(100% - 4.3em);
   height: 2.03em;
   padding: .4ch 1ch;
-  /*margin-left: 2ch;*/
   background: rgba(255, 255, 255, 0.55);
   border-bottom: none;
   resize: none;
   margin-bottom: 0;
+  margin-left: 1.9em;
 }
 .comments .reply_form textarea:focus {
   height: 8em;
@@ -313,18 +325,20 @@ form[status="bad"] button {
 .comments .reply_form textarea:focus + button {
   opacity: 1;
 }
-.comments button {
-  opacity: 0;
+.comments form.reply_form button {
+  opacity: .5;
   transition: opacity 400ms;
   position: absolute;
   top: 0;
   right: 0;
+  height: 2.05em;
+  line-height: 0;
 }
 form.reply_form button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 2.58em;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2.58em;
 }
 .reply_form textarea {
     width: calc(100% - 5em);
@@ -332,9 +346,13 @@ form.reply_form button {
 .reply_form button:after,
 .act_reply:after {
   content: ' ↦';
+  font-size: 1.3em;
+  line-height: 0;
 }
 .comments .reply_form button:after {
   font-size: 1.3em;
+  position: relative;
+  top: -2px;
 }
 .act_reply {
   background-color: white;
@@ -368,6 +386,9 @@ footer {
 @media only screen and (min-width : 667px) {
   body {
     font-size: 18px;
+  }
+  .comments {
+    max-width: 90%;
   }
   nav.main ul {
     text-align: right;

@@ -16,7 +16,7 @@ postResource.before('post', function(req, res, next){
       }
     }
     req.body.op = req.user._id;
-    
+
     next();
   } else {
     res.status(403).json({error:'Login required.'});
@@ -25,6 +25,7 @@ postResource.before('post', function(req, res, next){
 
 postResource.after('post', function(req, res, next){
   if(res.locals.bundle._id) {
+    // add post._id to user posts history (user.posts)
     Account.findOne({_id:res.locals.bundle.op}).exec(function(err, account){
       if(account) {
         account.posts.push(res.locals.bundle._id);
@@ -45,9 +46,11 @@ postResource.route("upvote", {
         Account.findOne({_id: req.user._id}).exec(function (err, user) {
           Post.findOne({_id:req.params.id}).exec(function (err, doc) {
              if(doc) {
+               // increment post.votes
                doc.votes = doc.votes + 1;
                doc.save();
-               user.upvoted_posts.push(req.params.id);
+               // add post._id to user post votes history
+               user.upvoted_posts.push(doc._id);
                user.save();
              }
           });
@@ -88,13 +91,11 @@ commentResource.before('post', function(req, res, next){
 commentResource.after('post', function(req, res, next){
   //now ref this comment to discussion and parent
 
-  // console.log(res.locals.bundle);
-  // console.log(req.body);
-
   if(res.locals.bundle._id) {
 
     console.log('here', res.locals.bundle._id);
 
+    // add comment._id to user comments history
     Account.findOne({_id:res.locals.bundle.op}).exec(function(err, account){
       if(account) {
         account.comments.push(res.locals.bundle._id);
@@ -102,20 +103,39 @@ commentResource.after('post', function(req, res, next){
       }
     });
 
-    Post.findOne({_id: req.body.pid}).exec(function(err, post){
+    // find root post to push comment
+    Post.findOne({_id: req.body.pid}).populate('op').exec(function(err, post){
       if(post) {
 
+        // push to general comments list
         post.comments.push(res.locals.bundle._id);
         if(req.body.type == 'direct') {
+          // push to direct comments list, we use this to start recursive render
           post.direct_comments.push(res.locals.bundle._id);
         } else if(req.body.type == 'thread') {
-          Comment.findOne({_id: req.body.cid}).exec(function(err, comment){
+          // not a direct comment, don't push to post.direct_comments
+          // instead find the comment user responded to and push response there
+          // this is where it threads
+          Comment.findOne({_id: req.body.cid}).populate('op').exec(function(err, comment){
             if(comment) {
               comment.responses.push(res.locals.bundle._id);
-              comment.save()
+              comment.save();
+
+              // TODO now find op of this comment, and push a notification
+              comment.op.notifications.push({
+                message: 'Your comment on "'+post.title+'" received a <a href="/topic/'+post._id+'#comment-'+res.locals.bundle._id+'">response</a> a response from '+req.user.username+'.'
+              });
+              comment.op.save();
             }
           });
         }
+
+        // TODO now use op and push a notification
+        // this should notify the post op
+        post.op.notifications.push({
+          message: 'Your topic "'+post.title+'" received a <a href="/topic/'+post._id+'#comment-'+res.locals.bundle._id+'">response</a> from '+req.user.username+'.'
+        });
+        post.op.save();
 
         post.save();
       }
@@ -137,9 +157,11 @@ commentResource.route("upvote", {
         Account.findOne({_id: req.user._id}).exec(function (err, user) {
           Comment.findOne({_id:req.params.id}).exec(function (err, doc) {
              if(doc) {
+               // increment comment.votes
                doc.votes = doc.votes + 1;
                doc.save();
-               user.upvoted_comments.push(req.params.id);
+               // add comment._id to user comment votes history
+               user.upvoted_comments.push(doc._id);
                user.save();
              }
           });

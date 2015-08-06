@@ -9,3 +9,8 @@
   <input type="password" placeholder="new" name="new">
   <button type="submit">Reset</button>
 </form>
+<ul class="notifications">
+  {{#each user.notifications}}
+  <li>{{timeFromNow ts_created}}: {{{message}}}</li>
+  {{/each}}
+</ul>

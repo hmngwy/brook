@@ -10,8 +10,8 @@
       <!-- {{post.score}} - {{post.score_c}} -->
       <span class="score">{{post.votes}}</span> &mdash;
       <a href="/user/{{post.op.username}}" class="byline">{{post.op.username}}</a>
-      <span class="timestamp">{{post.pretty_time}}</span>
-      <a href="/topic/{{_id}}" class="comment_count">{{post.comment_count}} comments</a>
+      <span class="timestamp">{{timeFromNow post.pretty_time}}</span>
+      <span class="comment_count">{{post.comment_count}} comments</span>
     </div>
     <div class="body">
       {{post.body}}
