@@ -8,7 +8,7 @@ The ranking algorithm is based on Ken Shirrif's [findings](http://www.righto.com
 
 The app does not cover the following yet, but I plan to add them in soon.
 
-**0. User Functions**, banning, listing submissions and comments, basic karma (non formulaic)
+**0. User Functions**, notifications, listing submissions and comments, basic karma (non formulaic), banning
 
 **1. Filters**, like "New", "Show", or "Ask". Based on user input or moderation.
 
@@ -31,9 +31,9 @@ npm start
 
 #### Moderation
 
-Refer to `config.js` for flags. 
+Refer to `config.js` for flags.
 
-Push corresponding strings to Post.flags[] to moderate posts. 
+Push corresponding strings to Post.flags[] to moderate posts.
 
 #### Demo
 

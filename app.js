@@ -25,8 +25,9 @@ var hbs = exphbs.create({
         return '';
     },
     isUpvotedComment: function (id, context) {
-      // console.log(context);
-      if(context.data.root.user.upvoted_comments.indexOf(id) !== -1) return 'voted';
+      if(context.data.root.user)
+        if(context.data.root.user.upvoted_comments.indexOf(id) !== -1) return 'voted';
+      else return '';
     },
     isUpvotedPost: function (id, context) {
       // console.log(context);
