@@ -4,19 +4,30 @@
 
 Written with both frontend brevity and delivery speed in mind, so beware the basic scripting and vanilla CSS. *(gasp!)*
 
-The ranking algorithm is based on Ken Shirrif's [findings](http://www.righto.com/2013/11/how-hacker-news-ranking-really-works.html) [(and here)](http://www.righto.com/2009/06/how-does-newsyc-ranking-work.html) on his research about YCombinator's Hacker News ranking.
+The ranking algorithm is based on Ken Shirrif's findings ([here](http://www.righto.com/2013/11/how-hacker-news-ranking-really-works.html) and [here](http://www.righto.com/2009/06/how-does-newsyc-ranking-work.html)) on his research about YCombinator's Hacker News ranking.
+
+#### Features
+
+- Registration, Login, Password reset
+- Threaded comments
+- Topic or comment upvoting
+- Topic or comment response notification
+- Karma (gist: received upvotes / submissions)
+- Topic ranking (base on [this](http://www.righto.com/2013/11/how-hacker-news-ranking-really-works.html))
+- Frontpage, shows all submissions regardless of channel
+- Channels, like subreddits
+- Frontpage and Channel filters, e.g. New, Show, Ask (last two in progress)
+- Channel exclusive filters (in progress)
 
 #### Roadmap
 
 The app does not cover the following yet, but I plan to add them in soon.
 
-**0. User Functions**, <strike>notifications, listing submissions and comments, basic karma (non formulaic)</strike>, banning
+**0. User Moderation**, freshman grace period, banning
 
-**1. Filters**, like <strike>"New"</strike>, "Show", or "Ask". Based on user input or moderation.
+**1. Remaining Filters**, "Show", and "Ask", New is done
 
-<strike>**2. Channels**, much like subreddits, except more streamlined.</strike>
-
-**2.a. Channel exclusive filters**
+**2. Channel exclusive filters**, defined by the editors
 
 **3. Moderation UI**, may it be terminal based or web. Currently moderation can only be done directly to the database. This may be an entirely separate project.
 
