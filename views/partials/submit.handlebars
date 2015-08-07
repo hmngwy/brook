@@ -1,7 +1,7 @@
 <form id="submit_form" action="/xhr/post" method="post" name="contact" onsubmit="return send(this)">
   <p><b>SUBMIT</b></p>
-  <!-- <input type="text" placeholder="~channel" value="~main"> -->
-  <input type="text" placeholder="title" name="title">
+  <input type="text" placeholder="channel (default: main)" name="channel" value="">
+  <input type="text" placeholder="title (required)" name="title">
   <input type="text" placeholder="url" name="url">
   <textarea placeholder="text" name="body"></textarea>
   <button type="submit">Post</button> <span class="response"></span>

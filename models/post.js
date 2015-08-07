@@ -11,7 +11,7 @@ var _ = require('underscore');
 var config = require('../config');
 
 var Post = new Schema({
-  channel:    { type: String, default: 'main', validate: [validators.isAlphanumeric()] },
+  channel:    { type: String, default: 'main', validate: [validators.isAlphanumeric(), validators.isLowercase()] },
   filters:    [{ type: String }],
 
   flags:      [{ type: String }],

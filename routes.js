@@ -7,12 +7,19 @@ var Post = require('./models/post').model;
 var Comment = require('./models/comment').model;
 var Account = require('./models/account').model;
 
+// someone once told me this was good for debugging
+var postsByScore = function postsByScore(filter, cb) {
+
+  Post.find(filter || {})
+    .sort({ score_c: -1 })
+    .populate('op')
+    .limit(config.pageCount)
+    .exec(cb);
+
+}
+
 router.get('/', function(req, res) {
-  Post.find()
-  .sort({ score_c: -1 })
-  .populate('op')
-  .limit(config.pageCount)
-  .exec(function(err, posts){
+  postsByScore(false, function(err, posts){
     if(posts.length) {
       res.render('index', { user: req.user, posts: posts, config: config });
     } else {
@@ -22,11 +29,29 @@ router.get('/', function(req, res) {
 });
 
 router.get('/p/:n', function(req, res, next) {
-  Post.find({score_c:{'$lt':req.params.n}})
-  .sort({ score_c: -1 })
-  .populate('op')
-  .limit(config.pageCount)
-  .exec(function(err, posts){
+  postsByScore({score_c:{'$lt':req.params.n}}, function(err, posts){
+    if(posts.length) {
+      res.render('index', { user: req.user, posts: posts, config: config });
+    } else {
+      var err = new Error('Page Empty');
+      err.status = 404;
+      next(err);
+    }
+  });
+});
+
+
+router.get('/~:channel', function(req, res) {
+  postsByScore({channel: req.params.channel}, function(err, posts){
+    if(posts.length) {
+      res.render('index', { user: req.user, posts: posts, config: config });
+    } else {
+      res.render('index', { user: req.user, posts: [], config: config });
+    }
+  });
+});
+router.get('/~:channel/p/:n', function(req, res, next) {
+  postsByScore({channel: req.params.channel, score_c:{'$lt':req.params.n}}, function(err, posts){
     if(posts.length) {
       res.render('index', { user: req.user, posts: posts, config: config });
     } else {
