@@ -1,6 +1,8 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
+var config = require('./config');
+
 var Post = require('./models/post').model;
 var Comment = require('./models/comment').model;
 
@@ -15,7 +17,7 @@ postResource.before('post', function(req, res, next){
       }
     }
     req.body.op = req.user._id;
-
+    if(req.body.channel === '') req.body.channel = config.defaultChannel;
     next();
   } else {
     res.status(403).json({error:'Login required.'});

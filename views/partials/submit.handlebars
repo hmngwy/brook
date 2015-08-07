@@ -1,6 +1,10 @@
 <form id="submit_form" action="/xhr/post" method="post" name="contact" onsubmit="return send(this)">
-  <p><b>SUBMIT</b></p>
-  <input type="text" placeholder="channel (default: {{config.defaultChannel}})" name="channel" value="">
+  <p><b>Post{{#if channel}} on ~{{channel}}{{/if}}</b></p>
+  {{#if channel}}
+  <input type="hidden" name="channel" value="{{channel}}">
+  {{else}}
+  <input type="text" placeholder="channel (default: {{config.defaultChannel}})" name="channel" value="{{channel}}">
+  {{/if}}
   <input type="text" placeholder="title (required)" name="title">
   <input type="text" placeholder="url" name="url">
   <textarea placeholder="text" name="body"></textarea>

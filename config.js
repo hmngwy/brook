@@ -7,16 +7,25 @@ config.mongoConnectionString = 'mongodb://localhost/tbb';
 config.siteTitle = "Brook";
 config.pageCount = 10;
 config.scoreRefreshInterval = '5 minutes';
-config.defaultChannel = 'main'
+config.defaultChannel = 'main';
 
 config.baseFilterMap = function baseFilterMap(filter, n){
   n = n || false;
+  // by default, all filters will be sorted by created date
+  // you can make filters (that is not new) sort by score_c by default, to do that
+  // in the else statement below change sort to score_c: -1
+  // you will have to make pagination template changes in index.handlebars
+  // under the if channelOrFilter block replace the whole if filter block
+  // with contents of its else block
   var baseWhere = (n) ? {ts_created: {'$lt': n} } : {};
   if(filter=='new') {
     return {
       where: baseWhere,
       sort: { ts_created: -1 }
     }
+
+  // add else if() conditions here to add more complex base filter
+  // user new as an example
   } else {
     return {
       where: function(){ baseWhere.filter_tags = filter; return baseWhere; }(),

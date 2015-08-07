@@ -127,6 +127,9 @@ router.get('/topic/:id', function(req, res) {
 // /~main - default channel
 // /~:channel - user defined channel
 
+// TODO make pagination controlled by url
+// (/~:channel)?(/:filter)?/:pageby/:n
+
 router.get('/(~:channel)?', function(req, res) {
   var where = {}
   if(req.params.channel) where.channel = req.params.channel;
@@ -143,7 +146,6 @@ router.get('/(~:channel)?', function(req, res) {
 router.get('(/~:channel)?/p/:n', function(req, res, next) {
   var where = {score_c:{'$lt':req.params.n}}
   if(req.params.channel) where.channel = req.params.channel;
-  console.log(where);
   postsSorted(where, { score_c: -1 }, function(err, posts){
 
     res.render('index', {
