@@ -8,30 +8,50 @@ var Comment = require('./models/comment').model;
 var Account = require('./models/account').model;
 
 // someone once told me this was good for debugging
-var postsByScore = function postsByScore(filter, cb) {
+var postsSorted = function postsByScore(filter, sort, cb) {
 
   Post.find(filter || {})
-    .sort({ score_c: -1 })
+    .sort(sort || {})
     .populate('op')
     .limit(config.pageCount)
     .exec(cb);
 
 }
 
-router.get('/', function(req, res) {
-  postsByScore(false, function(err, posts){
+// / - all channels
+// /~main - default channel
+// /~:channel - user defined channel
+
+router.get('/(~:channel)?', function(req, res) {
+  var where = {}
+  if(req.params.channel) where.channel = req.params.channel;
+  postsSorted(where, { score_c: -1 }, function(err, posts){
     if(posts.length) {
-      res.render('index', { user: req.user, posts: posts, config: config });
+      res.render('index', {
+        user: req.user,
+        posts: posts,
+        config: config,
+        channel: req.params.channel,
+        channelOrFilter: req.params.channel
+      });
     } else {
       res.render('index', { user: req.user, posts: [], config: config });
     }
   });
 });
-
-router.get('/p/:n', function(req, res, next) {
-  postsByScore({score_c:{'$lt':req.params.n}}, function(err, posts){
+router.get('(/~:channel)?/p/:n', function(req, res, next) {
+  var where = {score_c:{'$lt':req.params.n}}
+  if(req.params.channel) where.channel = req.params.channel;
+  console.log(where);
+  postsSorted(where, { score_c: -1 }, function(err, posts){
     if(posts.length) {
-      res.render('index', { user: req.user, posts: posts, config: config });
+      res.render('index', {
+        user: req.user,
+        posts: posts,
+        config: config,
+        channel: req.params.channel,
+        channelOrFilter: req.params.channel
+      });
     } else {
       var err = new Error('Page Empty');
       err.status = 404;
@@ -40,28 +60,59 @@ router.get('/p/:n', function(req, res, next) {
   });
 });
 
+router.get('(/~:channel)?/:filter', function(req, res, next) {
 
-router.get('/~:channel', function(req, res) {
-  postsByScore({channel: req.params.channel}, function(err, posts){
+  var where = config.baseFilterMap(req.params.filter).where;
+  if(req.params.channel) where.channel = req.params.channel;
+  postsSorted(
+    where,
+    config.baseFilterMap(req.params.filter).sort,
+    function(err, posts){
+
     if(posts.length) {
-      res.render('index', { user: req.user, posts: posts, config: config });
-    } else {
-      res.render('index', { user: req.user, posts: [], config: config });
-    }
-  });
-});
-router.get('/~:channel/p/:n', function(req, res, next) {
-  postsByScore({channel: req.params.channel, score_c:{'$lt':req.params.n}}, function(err, posts){
-    if(posts.length) {
-      res.render('index', { user: req.user, posts: posts, config: config });
+      res.render('index', {
+        user: req.user,
+        posts: posts,
+        config: config,
+        filter: req.params.filter,
+        channel: req.params.channel,
+        channelOrFilter: req.params.channel || req.params.filter
+      });
     } else {
       var err = new Error('Page Empty');
       err.status = 404;
       next(err);
     }
   });
-});
 
+});
+router.get('(/~:channel)?/:filter/p/:n', function(req, res, next) {
+
+  var where = config.baseFilterMap(req.params.filter, req.params.n).where;
+  if(req.params.channel) where.channel = req.params.channel;
+
+  postsSorted(
+    where,
+    config.baseFilterMap(req.params.filter, req.params.n).sort,
+    function(err, posts){
+
+    if(posts.length) {
+      res.render('index', {
+        user: req.user,
+        posts: posts,
+        config: config,
+        filter: req.params.filter,
+        channel: req.params.channel,
+        channelOrFilter: req.params.channel || req.params.filter
+      });
+    } else {
+      var err = new Error('Page Empty');
+      err.status = 404;
+      next(err);
+    }
+  });
+
+});
 
 router.get('/topic/:id', function(req, res) {
   Post.findOne({_id:req.params.id}).populate('direct_comments').populate('op').exec(function(err, post){

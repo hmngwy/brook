@@ -10,11 +10,11 @@ The ranking algorithm is based on Ken Shirrif's [findings](http://www.righto.com
 
 The app does not cover the following yet, but I plan to add them in soon.
 
-**0. User Functions**, <strike>notifications, listing submissions and comments,</strike> basic karma (non formulaic), banning
+**0. User Functions**, <strike>notifications, listing submissions and comments, basic karma (non formulaic)</strike>, banning
 
-**1. Filters**, like "New", "Show", or "Ask". Based on user input or moderation.
+**1. Filters**, like <strike>"New"</strike>, "Show", or "Ask". Based on user input or moderation.
 
-**2. Channels**, much like subreddits, except more streamlined.
+<strike>**2. Channels**, much like subreddits, except more streamlined.</strike>
 
 **2.a. Channel exclusive filters**
 

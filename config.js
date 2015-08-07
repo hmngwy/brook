@@ -5,8 +5,25 @@ config.port = 7001;
 config.agendaConnectionString = 'localhost/tbb';
 config.mongoConnectionString = 'mongodb://localhost/tbb';
 config.siteTitle = "Brook";
-config.pageCount = 20;
+config.pageCount = 10;
 config.scoreRefreshInterval = '5 minutes';
+config.defaultChannel = 'main'
+
+config.baseFilterMap = function baseFilterMap(filter, n){
+  n = n || false;
+  var baseWhere = (n) ? {ts_created: {'$lt': n} } : {};
+  if(filter=='new') {
+    return {
+      where: baseWhere,
+      sort: { ts_created: -1 }
+    }
+  } else {
+    return {
+      where: function(){ baseWhere.filter_tags = filter; return baseWhere; }(),
+      sort: { ts_created: -1 }
+    }
+  }
+}
 // config.scoreRefreshInterval = '1 seconds';
 
 // borrowing from HN, more specifically

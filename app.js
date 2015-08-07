@@ -19,6 +19,18 @@ var app = express();
 var hbs = exphbs.create({
   // Specify helpers which are only registered on this instance.
   helpers: {
+    ifCond: function(v1, v2) {
+      if(v1 || v2) {
+        return true;
+      }
+      return false;
+    },
+    lastDate: function(array) {
+      if(array.length)
+        return moment(array[array.length-1].ts_created).valueOf();
+      else
+        return '';
+    },
     lastScoreC: function(array) {
       if(array.length)
         return array[array.length-1].score_c;
