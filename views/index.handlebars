@@ -1,3 +1,4 @@
+{{> filternav channel=channel}}
 {{#if user}}
 {{> submit}}
 {{/if}}
@@ -6,9 +7,6 @@
   <strong>Register or Login to Post</strong>
 </p>
 {{/unless}}
-{{#if channel}}
-{{> filternav channel=channel}}
-{{/if}}
 <main>
   {{#if posts}}
   <ol id="topic_list">

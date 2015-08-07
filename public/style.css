@@ -38,10 +38,6 @@ nav.main {
   .brand a {
     color: brown;
   }
-  .brand a:before {
-    content: '⌂ ';
-    font-size: 1.4em;
-  }
   .handle:before {
     content: '★ ';
   }
@@ -97,6 +93,18 @@ main {
 .nothing {
   text-align: center;
   padding: 2em 0;
+}
+.filters {
+  font-weight: bold;
+}
+.filters li:first-of-type a {
+  font-weight: normal;
+  text-shadow: none;
+  background-image: none;
+}
+.filters li:first-of-type a:before {
+  content: '⌂ ';
+  font-size: 1.4em;
 }
 .topic {
   margin-left: 0;
