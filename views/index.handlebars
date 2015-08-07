@@ -10,6 +10,7 @@
 {{> filternav channel=channel}}
 {{/if}}
 <main>
+  {{#if posts}}
   <ol id="topic_list">
     {{#posts}}
     <li>
@@ -31,6 +32,11 @@
     </li>
     {{/posts}}
   </ol>
+  {{else}}
+  <p class="nothing">
+    Nothing here.
+  </p>
+  {{/if}}
   <nav class="page">
 
     {{#if channelOrFilter}}

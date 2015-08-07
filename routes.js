@@ -26,17 +26,13 @@ router.get('/(~:channel)?', function(req, res) {
   var where = {}
   if(req.params.channel) where.channel = req.params.channel;
   postsSorted(where, { score_c: -1 }, function(err, posts){
-    if(posts.length) {
-      res.render('index', {
-        user: req.user,
-        posts: posts,
-        config: config,
-        channel: req.params.channel,
-        channelOrFilter: req.params.channel
-      });
-    } else {
-      res.render('index', { user: req.user, posts: [], config: config });
-    }
+    res.render('index', {
+      user: req.user,
+      posts: posts,
+      config: config,
+      channel: req.params.channel,
+      channelOrFilter: req.params.channel
+    });
   });
 });
 router.get('(/~:channel)?/p/:n', function(req, res, next) {
@@ -44,19 +40,15 @@ router.get('(/~:channel)?/p/:n', function(req, res, next) {
   if(req.params.channel) where.channel = req.params.channel;
   console.log(where);
   postsSorted(where, { score_c: -1 }, function(err, posts){
-    if(posts.length) {
-      res.render('index', {
-        user: req.user,
-        posts: posts,
-        config: config,
-        channel: req.params.channel,
-        channelOrFilter: req.params.channel
-      });
-    } else {
-      var err = new Error('Page Empty');
-      err.status = 404;
-      next(err);
-    }
+
+    res.render('index', {
+      user: req.user,
+      posts: posts,
+      config: config,
+      channel: req.params.channel,
+      channelOrFilter: req.params.channel
+    });
+
   });
 });
 
@@ -69,7 +61,6 @@ router.get('(/~:channel)?/:filter', function(req, res, next) {
     config.baseFilterMap(req.params.filter).sort,
     function(err, posts){
 
-    if(posts.length) {
       res.render('index', {
         user: req.user,
         posts: posts,
@@ -78,11 +69,7 @@ router.get('(/~:channel)?/:filter', function(req, res, next) {
         channel: req.params.channel,
         channelOrFilter: req.params.channel || req.params.filter
       });
-    } else {
-      var err = new Error('Page Empty');
-      err.status = 404;
-      next(err);
-    }
+
   });
 
 });

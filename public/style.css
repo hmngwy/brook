@@ -94,6 +94,10 @@ main {
   position: relative; /*so .act_upvote lines up per li*/
   margin-left: 3em;
 }
+.nothing {
+  text-align: center;
+  padding: 2em 0;
+}
 .topic {
   margin-left: 0;
 }
@@ -126,6 +130,7 @@ a {
 .response a,
 .textwall a,
 .user_list a,
+.filters a,
 .next {
   text-decoration: none;
   background-image: -webkit-linear-gradient(rgba(70, 70, 70, 0.25) 0%, rgb(70, 70, 70) 100%);
@@ -141,6 +146,7 @@ a {
   .response a,
   .textwall a,
   .user_list a,
+  .filters a,
   .next {
     background-image: -webkit-linear-gradient(rgba(70, 70, 70, 0.25) 0%, rgb(70, 70, 70) 100%);
     background-image: linear-gradient(rgba(70, 70, 70, 0.25) 0%, rgb(70, 70, 70) 100%);
