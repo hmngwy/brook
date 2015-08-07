@@ -6,6 +6,9 @@
   <strong>Register or Login to Post</strong>
 </p>
 {{/unless}}
+{{#if channel}}
+{{> filternav channel=channel}}
+{{/if}}
 <main>
   <ol id="topic_list">
     {{#posts}}
