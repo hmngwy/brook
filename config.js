@@ -11,16 +11,16 @@ config.defaultChannel = 'main';
 
 config.filters = {
   ask: {
-    pattern: /(^ask\ .*:)?(.*\?$)?/i
+    pattern: /(^ask\ .+\:.+)|(.+\?$)/i
   },
   show: {
-    pattern:/(^show\ .*:)?/i
+    pattern: /(^show\ .+\:.+$)/i
     // TODO make baseFilterMap check this scope for the returned query ops
   }
 };
 
 config.filterDefaultSort = { ts_created: -1 };
-var defaultQueryOpts = function defaultQueryOpts(baseWhere){
+var defaultQueryOpts = function defaultQueryOpts(filter, baseWhere){
   return {
     where: function(b){ b.filter_tags = filter; return b; }(baseWhere),
     sort: config.filterDefaultSort
@@ -48,9 +48,9 @@ config.baseFilterMap = function baseFilterMap(filter, n){
   // user new as an example
   } else {
     if(config.filters[filter] && config.filters[filter].queryOpts)
-      return config.filters[filter].queryOpts(baseWhere);
+      return config.filters[filter].queryOpts(filter, baseWhere);
     else
-      return defaultQueryOpts(baseWhere);
+      return defaultQueryOpts(filter, baseWhere);
   }
 }
 // config.scoreRefreshInterval = '1 seconds';

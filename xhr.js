@@ -21,9 +21,9 @@ postResource.before('post', function(req, res, next){
 
     //set the filter tags here
     for(var prop in config.filters) {
-      var test = config.filters[prop].pattern.test(req.body.title);
+      var test = config.filters[prop].pattern.test(req.body.title.trim());
       console.log(test);
-      if(test.length >= 0) {
+      if(test) {
         req.body.filter_tags = req.body.filter_tags || [];
         req.body.filter_tags.push(prop);
         // although filter_tags is an [], we limit tags to just 1
