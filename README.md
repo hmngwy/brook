@@ -35,9 +35,9 @@ The ranking algorithm is based on Ken Shirrif's findings ([here](http://www.righ
 
 **2. Moderation UI**, may it be terminal based or web. Currently moderation can only be done directly to the database. This may be an entirely separate project.
 
-**3.a. User roles**
+**2.A. User roles**
 
-**4. Search**, though I am not sure if this is something I want, keyword indexing is expensive
+**3. Search**, though I am not sure if this is something I want, keyword indexing is expensive
 
 #### Usage
 
@@ -63,8 +63,7 @@ Very soon.
 #### LICENSE : GNU GPL V3
 
 Brook Message Board, social network for sharing and discussing
-documents on the internet, supports submission upvotes,
-and user "karma".
+documents on the internet, supports "upvotes", and user "karma".
 Copyright (C) 2015 Conrado Patricio Ambrosio
 
 This program is free software: you can redistribute it and/or modify
@@ -85,5 +84,5 @@ If not, see <http://www.gnu.org/licenses/>.
 
 You can contact the original contributor of this program at
 cp.ambrosio@gmail.com, on Twitter <https://twitter.com/patambrosio>, at
-the source repository forum <https://github.com/hmngwy/brook/issues>, or at
-the source repository chatroom <https://gitter.im/hmngwy/brook>
+the source repository forum <https://github.com/hmngwy/brook/issues>, or
+at the source repository chatroom <https://gitter.im/hmngwy/brook>
