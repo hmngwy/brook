@@ -55,3 +55,32 @@ Soon. I plan to actually run it more than as a demo.
 #### Screenshots
 
 Very soon.
+
+
+#### LICENSE : GNU GPL V3
+
+Brook Message Board, social network for sharing and discussing
+documents on the internet, supports submission upvotes,
+and user "karma".
+Copyright (C) 2015 Conrado Patricio Ambrosio
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. You should be able to review the full license
+at ./LICENSE, or online under the program source repository at:
+<https://github.com/hmngwy/brook/blob/master/LICENSE>
+If not, see <http://www.gnu.org/licenses/>.
+
+You can contact the original contributor of this program at
+cp.ambrosio@gmail.com, on Twitter <https://twitter.com/patambrosio>, at
+the source repository forum <https://github.com/hmngwy/brook/issues>, or at
+the source repository chatroom <https://gitter.im/hmngwy/brook>
