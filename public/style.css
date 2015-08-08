@@ -247,7 +247,7 @@ input, textarea {
   border: 0;
   border-bottom: 1px solid #DDD;
   display: block;
-  margin-bottom: 1ch;
+  margin-bottom: .4ch;
   box-sizing: border-box;
   border-radius: 2px;
   transition: height 400ms, background 400ms;

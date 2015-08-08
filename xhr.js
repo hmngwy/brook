@@ -18,6 +18,21 @@ postResource.before('post', function(req, res, next){
     }
     req.body.op = req.user._id;
     if(req.body.channel === '') req.body.channel = config.defaultChannel;
+
+    //set the filter tags here
+    for(var prop in config.filters) {
+      var test = config.filters[prop].pattern.test(req.body.title);
+      console.log(test);
+      if(test.length >= 0) {
+        req.body.filter_tags = req.body.filter_tags || [];
+        req.body.filter_tags.push(prop);
+        // although filter_tags is an [], we limit tags to just 1
+        break;
+      }
+    }
+
+
+
     next();
   } else {
     res.status(403).json({error:'Login required.'});
@@ -29,6 +44,8 @@ postResource.after('post', function(req, res, next){
     // add post._id to user posts history (user.posts)
     req.user.posts.push(res.locals.bundle._id);
     req.user.save();
+
+
   }
   next();
 });
