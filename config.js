@@ -10,49 +10,31 @@ config.scoreRefreshInterval = '5 minutes';
 config.defaultChannel = 'main';
 
 config.filters = {
+  new: { // tag, or tag slug
+    name: 'New',
+    findByTag: false
+  },
   ask: {
+    name: 'Ask',
+    findByTag: 'ask',
     pattern: /(^ask\ .+\:.+)|(.+\?$)/i
   },
   show: {
+    name: 'Show',
+    findByTag: 'show',
     pattern: /(^show\ .+\:.+$)/i
     // TODO make baseFilterMap check this scope for the returned query ops
   }
 };
 
+// by default, all filters will be sorted by created date
+// you can make filters (that is not new) sort by score_c by default, to do that
+// change config.filterDefaultSort to score_c: -1
+// you will have to make pagination template changes in index.handlebars
+// under the if channelOrFilter block replace the whole if filter block
+// with contents of its else block
 config.filterDefaultSort = { ts_created: -1 };
-var defaultQueryOpts = function defaultQueryOpts(filter, baseWhere){
-  return {
-    where: function(b){ b.filter_tags = filter; return b; }(baseWhere),
-    sort: config.filterDefaultSort
-  }
-}
 
-
-// TODO needs a better name, this builds the query for the input filter
-config.baseFilterMap = function baseFilterMap(filter, n){
-  n = n || false;
-  // by default, all filters will be sorted by created date
-  // you can make filters (that is not new) sort by score_c by default, to do that
-  // change config.filterDefaultSort to score_c: -1
-  // you will have to make pagination template changes in index.handlebars
-  // under the if channelOrFilter block replace the whole if filter block
-  // with contents of its else block
-  var baseWhere = (n) ? {ts_created: {'$lt': n} } : {};
-  if(filter=='new') {
-    return {
-      where: baseWhere,
-      sort: config.filterDefaultSort
-    }
-
-  // add else if() conditions here to add more complex base filter
-  // user new as an example
-  } else {
-    if(config.filters[filter] && config.filters[filter].queryOpts)
-      return config.filters[filter].queryOpts(filter, baseWhere);
-    else
-      return defaultQueryOpts(filter, baseWhere);
-  }
-}
 // config.scoreRefreshInterval = '1 seconds';
 
 // borrowing from HN, more specifically

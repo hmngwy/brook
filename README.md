@@ -29,7 +29,7 @@ The ranking algorithm is based on Ken Shirrif's findings ([here](http://www.righ
 #### Roadmap
 ###### These are not final, and may change during implementation usually for performance reasons
 
-**0. User Moderation**, freshman grace period, banning
+**0. User Moderation**, freshman grace period, banning, hellban
 
 **1. Channel exclusive filters**, defined by the editors
 
@@ -37,7 +37,9 @@ The ranking algorithm is based on Ken Shirrif's findings ([here](http://www.righ
 
 **2.A. User roles**
 
-**3. Search**, though I am not sure if this is something I want, keyword indexing is expensive
+**3. Rate limiting**
+
+**4. Search**, though I am not sure if this is something I want, keyword indexing is expensive
 
 #### Usage
 

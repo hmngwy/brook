@@ -47,7 +47,13 @@ No build scripts, no deploy code, no nothing.
           f.getElementsByClassName('response')[0].innerHTML = '<a href="/topic/'+rdata._id+'">'+rdata.title+'</a>';
         } else {
           var rdata = JSON.parse(xmlhttp.responseText);
-          f.getElementsByClassName('response')[0].innerHTML = 'Check your input.';
+          var fields = '', messages = '', i=0;
+          console.log(rdata.errors)
+          for(var prop in rdata.errors) {
+            fields += ((i==0) ? '' : ', ') + prop;
+            i++;
+          }
+          f.getElementsByClassName('response')[0].innerHTML = 'Check fields: '+fields;
           f.setAttribute('status', 'bad');
         }
       };

@@ -1,6 +1,7 @@
 var passport = require('passport');
 var router = require('express').Router();
 var config = require('./config');
+var queryBuilder = require('./query');
 var moment = require('moment');
 
 var Post = require('./models/post').model;
@@ -161,11 +162,11 @@ router.get('(/~:channel)?/p/:n', function(req, res, next) {
 
 router.get('(/~:channel)?/:filter', function(req, res, next) {
 
-  var where = config.baseFilterMap(req.params.filter).where;
+  var where = queryBuilder(req.params.filter).where;
   if(req.params.channel) where.channel = req.params.channel;
   postsSorted(
     where,
-    config.baseFilterMap(req.params.filter).sort,
+    queryBuilder(req.params.filter).sort,
     function(err, posts){
 
       res.render('index', {
@@ -182,12 +183,12 @@ router.get('(/~:channel)?/:filter', function(req, res, next) {
 });
 router.get('(/~:channel)?/:filter/p/:n', function(req, res, next) {
 
-  var where = config.baseFilterMap(req.params.filter, req.params.n).where;
+  var where = queryBuilder(req.params.filter, req.params.n).where;
   if(req.params.channel) where.channel = req.params.channel;
 
   postsSorted(
     where,
-    config.baseFilterMap(req.params.filter, req.params.n).sort,
+    queryBuilder(req.params.filter, req.params.n).sort,
     function(err, posts){
 
     if(posts.length) {

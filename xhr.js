@@ -26,7 +26,7 @@ postResource.before('post', function(req, res, next){
       if(test) {
         req.body.filter_tags = req.body.filter_tags || [];
         req.body.filter_tags.push(prop);
-        // although filter_tags is an [], we limit tags to just 1
+        // although filter_tags is an [], we limit default tags to just 1
         break;
       }
     }
