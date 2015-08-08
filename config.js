@@ -12,7 +12,10 @@ config.defaultChannel = 'main';
 config.filters = {
   new: { // tag, or tag slug
     name: 'New',
-    findByTag: false
+    findByTag: false // using false applies this queries over all tags
+    // not defining `queryOpts:` loads defaults
+    // i.e. where = {ts_created $lt page} || {}
+    // and sort = sort.configDefaultSort
   },
   ask: {
     name: 'Ask',
@@ -28,20 +31,19 @@ config.filters = {
 };
 
 // by default, all filters will be sorted by created date
-// you can make filters (that is not new) sort by score_c by default, to do that
-// change config.filterDefaultSort to score_c: -1
-// you will have to make pagination template changes in index.handlebars
+// you can make filters (that is not new) sort by Rank/score_c by default
+// to do that change config.filterDefaultSort to score_c: -1
+// you may have to make pagination template changes in index.handlebars
 // under the if channelOrFilter block replace the whole if filter block
 // with contents of its else block
 config.filterDefaultSort = { ts_created: -1 };
-
-// config.scoreRefreshInterval = '1 seconds';
 
 // borrowing from HN, more specifically
 // http://www.righto.com/2013/11/how-hacker-news-ranking-really-works.html
 
 // the values here are in "difference" to 1 because of how we compute penalties
-// lower the number, higher the penalty
+// in the research above it's the inverse
+// summary: lower the number, higher the penalty
 // e.g. -.4 = less 40%
 // this way we can compound penalties
 // and award extra scores with positive values

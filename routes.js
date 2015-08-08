@@ -19,7 +19,6 @@ var postsSorted = function postsByScore(filter, sort, cb) {
 
 }
 
-
 router.get('/register', function(req, res) {
   res.render('register', {config: config, taken:req.query.taken!=undefined});
 });
@@ -69,7 +68,6 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-
 router.post('/reset', function(req, res, next) {
 
   passport.authenticate('local', function(err, user, info) {
@@ -93,16 +91,13 @@ router.post('/reset', function(req, res, next) {
 
 });
 
-
 router.get('/about', function(req, res) {
   res.render('about', { user: req.user, config: config });
 });
 
-
 router.get('/rules', function(req, res) {
   res.render('rules', { user: req.user, config: config });
 });
-
 
 router.get('/topic/:id', function(req, res) {
   Post.findOne({_id:req.params.id}).populate('direct_comments').populate('op').exec(function(err, post){

@@ -2,14 +2,14 @@
   <ul>
     {{#if channel}}
     <li><a href="/~{{channel}}">~{{channel}}</a></li>
-    <li><a href="/~{{channel}}/new">New</a></li>
-    <li><a href="/~{{channel}}/show">Show</a></li>
-    <li><a href="/~{{channel}}/ask">Ask</a></li>
+    {{#each config.filters}}
+    <li><a href="/~{{channel}}/{{@key}}">{{this.name}}</a></li>
+    {{/each}}
     {{else}}
     <li><a href="/"></a></li>
-    <li><a href="/new">New</a></li>
-    <li><a href="/show">Show</a></li>
-    <li><a href="/ask">Ask</a></li>
+    {{#each config.filters}}
+    <li><a href="/{{@key}}">{{this.name}}</a></li>
+    {{/each}}
     {{/if}}
   </ul>
 </nav>
