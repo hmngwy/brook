@@ -10,30 +10,34 @@ The ranking algorithm is based on Ken Shirrif's findings ([here](http://www.righ
 
 - Registration, Login, Password reset
 - Threaded comments
-- Topic or comment upvoting
-- Topic or comment response notification
+- Topic and comment upvoting
+- Topic and comment response notification
 - Karma (gist: received upvotes / submissions)
 - Topic ranking (base on [this](http://www.righto.com/2013/11/how-hacker-news-ranking-really-works.html))
 - Frontpage, shows all submissions regardless of channel
 - Channels, like subreddits
-- Frontpage and Channel filters, e.g. New, Show, Ask (last two in progress)
-- Channel exclusive filters (in progress)
+- Frontpage and Channel filters, e.g. New, Show, Ask
+- Configurable filters, add, remove, etc.
+
+#### Technical features
+
+- Does not use skip to paginate
+- Single sort parameter to rank submissions by score
+- Minimal scheduled jobs, subset processing, minimal inconsistency
+- Maximum of two explicit nested DB queries (rough approx.)
 
 #### Roadmap
-
-The app does not cover the following yet, but I plan to add them in soon.
+###### These are not final, and may change during implementation usually for performance reasons
 
 **0. User Moderation**, freshman grace period, banning
 
-**1. Remaining Filters**, "Show", and "Ask", New is done
+**1. Channel exclusive filters**, defined by the editors
 
-**2. Channel exclusive filters**, defined by the editors
-
-**3. Moderation UI**, may it be terminal based or web. Currently moderation can only be done directly to the database. This may be an entirely separate project.
+**2. Moderation UI**, may it be terminal based or web. Currently moderation can only be done directly to the database. This may be an entirely separate project.
 
 **3.a. User roles**
 
-**4 Search**, though I am not sure if this is something I want, keyword indexing is expensive
+**4. Search**, though I am not sure if this is something I want, keyword indexing is expensive
 
 #### Usage
 
@@ -50,12 +54,11 @@ Push corresponding strings to Post.flags[] to moderate posts.
 
 #### Demo
 
-Soon. I plan to actually run it more than as a demo.
+Soon.
 
 #### Screenshots
 
 Very soon.
-
 
 #### LICENSE : GNU GPL V3
 
