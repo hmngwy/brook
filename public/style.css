@@ -1,9 +1,5 @@
-::-moz-selection { /* Code for Firefox */
-  background: beige;
-}
-::selection {
-  background: beige;
-}
+::-moz-selection { background: beige; }
+::selection { background: beige; }
 body {
   margin: 0;
   padding: 0;
@@ -42,7 +38,22 @@ nav ul li:last-of-type {
   .handle:before {
     text-shadow: 0 2px rgba(255,255,255,0.4);
   }
-
+nav.page {
+  text-align: center;
+}
+nav.page a {
+  background-color: white;
+  border-radius: 2px;
+  display: inline-block;
+  border-bottom: 1px solid #ccc;
+  padding: .5ch 1ch;
+  text-shadow: none;
+  background-image: none;
+}
+nav.main {
+  font-weight: 300;
+  color: whitesmoke;
+}
 .wrap {
   padding: 0 1em;
   max-width: 72ch;
@@ -61,10 +72,6 @@ nav ul li:last-of-type {
 }
 .navmain-wrapper {
   background-color: #2a2a2a;
-}
-nav.main {
-  font-weight: 300;
-  color: whitesmoke;
 }
 .invitation {
   text-align: center;
@@ -147,12 +154,12 @@ main {
   top: .275em;
   left: 0;
 }
+.link:visited {
+  color: grey;
+}
 a {
   color: inherit;
   text-decoration: none;
-}
-.link:visited {
-  color: grey;
 }
 .body a,
 .meta a,
@@ -256,7 +263,6 @@ a {
 form {
   margin-bottom: 2em;
   position: relative;
-  /*display: none;*/
 }
 input:focus,
 button:focus,
@@ -349,7 +355,6 @@ form[status="bad"] button {
 .comments li {
   box-sizing: border-box;
   position: relative;
-  /*margin-bottom: 2ch;*/
 }
 .comments li:target .timestamp,
 .comments li:target .byline {
@@ -431,18 +436,6 @@ form.reply_form button {
   padding: .2em .3em .2em .3em;
   border-radius: 2px;
   border-bottom: 1px solid #CCC;
-}
-nav.page {
-  text-align: center;
-}
-nav.page a {
-  background-color: white;
-  border-radius: 2px;
-  display: inline-block;
-  border-bottom: 1px solid #ccc;
-  padding: .5ch 1ch;
-  text-shadow: none;
-  background-image: none;
 }
 footer {
   border-top: 1px solid #ccc;
