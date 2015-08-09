@@ -1,13 +1,10 @@
 <!--
 This site is a practice in code brevity.
 
-The front-end of this site is written with delivery speed as first priority.
+The front-end of this site is written with delivery speed as first priority,
+to the extent that we are not using any JS library.
 
-That should explain the brevity of the Stylesheet and Javascript f(x).
-
-There is also no toolbelt.
-
-No build scripts, no deploy code, no nothing.
+That should explain the brevity of the Stylesheet and extra basic JS f(x).
 -->
 <!DOCTYPE html>
 <html>
@@ -100,7 +97,7 @@ No build scripts, no deploy code, no nothing.
           <li><a href="/login">Login</a></li>
           {{/user}}
           {{#user}}
-          <li><a href="/user" class="handle">Account: {{username}}</a></li>
+          <li><a href="/user" class="handle">Account: {{username}} - {{karma}}</a></li>
           <li><a href="/logout">Logout</a></li>
           {{/user}}
         </ul>

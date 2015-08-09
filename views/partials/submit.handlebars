@@ -1,5 +1,5 @@
 <form id="submit_form" action="/xhr/post" method="post" name="contact" onsubmit="return send(this)">
-  <p><b>Post{{#if channel}} on ~{{channel}}{{/if}}</b></p>
+  <p><b>Post a topic {{#if channel}} in ~{{channel}}{{/if}}</b></p>
   {{#if channel}}
   <input type="hidden" name="channel" value="{{channel}}">
   {{else}}

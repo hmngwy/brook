@@ -21,8 +21,10 @@ postResource.before('post', function(req, res, next){
 
     //set the filter tags here
     for(var prop in config.filters) {
-      var test = config.filters[prop].pattern.test(req.body.title.trim());
-      console.log(test);
+      var test = false;
+      if(config.filters[prop].pattern) {
+        var test = config.filters[prop].pattern.test(req.body.title.trim());
+      }
       if(test) {
         req.body.filter_tags = req.body.filter_tags || [];
         req.body.filter_tags.push(prop);

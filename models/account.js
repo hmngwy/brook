@@ -23,6 +23,9 @@ var Account = new Schema({
   // user register date
   ts_created: { type: Date, default: Date.now },
   // role assigned by admin
+  status: { type: String,
+    enum: ['normal', 'banned', 'hell-banned'], default: 'normal' },
+  // role assigned by admin
   role: { type: String,
     enum: ['super', 'admin', 'editor', 'moderator', 'basic'], default: 'basic' },
   // violations issued by moderators
