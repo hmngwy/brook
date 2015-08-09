@@ -9,9 +9,8 @@
     </div>
     <div class="meta">
       <!-- {{post.score}} - {{post.score_c}} -->
-      <span class="score">{{post.votes}}</span> &mdash;
-      <a href="/user/{{post.op.username}}" class="byline">{{post.op.username}}</a>  <span class="karma">{{post.op.karma}}</span>
-      <span class="timestamp">{{timeFromNow post.pretty_time}}</span>
+      <a href="/user/{{post.op.username}}" class="byline">{{post.op.username}}</a>  <span class="karma">{{post.op.karma}}</span> &mdash;
+      <span class="timestamp">{{timeFromNow post.pretty_time}}</span> &mdash;
       <span class="comment_count">{{post.comment_count}} comments</span>
     </div>
     <div class="body">

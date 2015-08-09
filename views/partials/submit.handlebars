@@ -1,3 +1,5 @@
+{{#if user}}
+
 <form id="submit_form" action="/xhr/post" method="post" name="contact" onsubmit="return send(this)">
   <p><b>Post a topic {{#if channel}} in ~{{channel}}{{/if}}</b></p>
   {{#if channel}}
@@ -10,3 +12,9 @@
   <textarea placeholder="text" name="body"></textarea>
   <button type="submit">Post</button> <span class="response"></span>
 </form>
+
+{{/if}}
+
+{{#unless user}}
+<p class="invitation"><a href="/register" class="u">Register</a> or <a href="/login" class="u">login</a> to post topics</p>
+{{/unless}}

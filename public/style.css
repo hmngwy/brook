@@ -27,8 +27,8 @@ nav ul li {
   display: inline-block;
   margin-right: 1em;
 }
-nav.main {
-  font-weight: bold;
+nav ul li:last-of-type {
+  margin-right: 0;
 }
   .brand {
     display: block;
@@ -36,20 +36,41 @@ nav.main {
     margin-bottom: 1ch;
   }
   .brand a {
-    color: brown;
+    font-weight: bold;
+    text-shadow: 0 2px rgba(255,255,255,0.4);
   }
   .handle:before {
-    content: '★ ';
+    text-shadow: 0 2px rgba(255,255,255,0.4);
   }
+
 .wrap {
   padding: 0 1em;
   max-width: 72ch;
   margin: auto;
 }
+.fullwidth {
+  max-width: 100%;
+}
+.wrap > *, .fullwidth > * {
+  padding: 0 1em;
+}
+.fullwidth > * {
+  max-width: 72ch;
+  margin: auto;
+  box-sizing: border-box;
+}
+.navmain-wrapper {
+  background-color: #2a2a2a;
+}
+nav.main {
+  font-weight: 300;
+  color: whitesmoke;
+}
 .invitation {
   text-align: center;
-  text-transform: uppercase;
-  background-color: white;
+  border-radius: 2px;
+  border: 1px solid lightgrey;
+  color: grey;
   padding: .5ch 0;
 }
 .user_list {
@@ -123,7 +144,7 @@ main {
   color: indianred;
   font-size: 1.8em;
   position: absolute;
-  top: .3em;
+  top: .275em;
   left: 0;
 }
 a {
@@ -139,6 +160,7 @@ a {
 .textwall a,
 .user_list a,
 .filters a,
+.u,
 .next {
   text-decoration: none;
   background-image: -webkit-linear-gradient(rgba(70, 70, 70, 0.25) 0%, rgb(70, 70, 70) 100%);
@@ -149,6 +171,7 @@ a {
   text-shadow: 3px 0 whitesmoke, 2px 0 whitesmoke, 1px 0 whitesmoke, -1px 0 whitesmoke, -2px 0 whitesmoke, -3px 0 whitesmoke;
 }
 @media (-webkit-min-device-pixel-ratio: 1.75), (min-resolution: 168dpi) {
+  .u,
   .body a,
   .meta a,
   .response a,
@@ -223,6 +246,7 @@ a {
   margin-right: .5em;
 }
 .topic .link {
+  position: relative;
   display: inline;
 }
 .meta {
@@ -426,6 +450,7 @@ footer {
   padding-top: 1em;
   text-align: center;
   font-size: 2em;
+  line-height: 2em;
 }
 /*triggers */
 [submit="on"] #submit_form {

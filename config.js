@@ -4,7 +4,7 @@ config.port = 7001;
 
 config.agendaConnectionString = 'localhost/tbb';
 config.mongoConnectionString = 'mongodb://localhost/tbb';
-config.siteTitle = "Brook";
+config.siteTitle = "BROOK";
 config.pageCount = 10;
 config.scoreRefreshInterval = '5 minutes';
 config.defaultChannel = 'main';

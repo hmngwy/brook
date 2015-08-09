@@ -86,7 +86,7 @@ That should explain the brevity of the Stylesheet and extra basic JS f(x).
   </script>
   </head>
   <body id="home">
-    <div class="wrap">
+    <div class="fullwidth navmain-wrapper">
       <nav class="main">
         <ul>
           <li class="brand"><a href="/">{{config.siteTitle}}</a></li>
@@ -97,15 +97,14 @@ That should explain the brevity of the Stylesheet and extra basic JS f(x).
           <li><a href="/login">Login</a></li>
           {{/user}}
           {{#user}}
-          <li><a href="/user" class="handle">Account: {{username}} - {{karma}}</a></li>
+          <li><a href="/user" class="handle">{{username}} [{{karma}}]</a></li>
           <li><a href="/logout">Logout</a></li>
           {{/user}}
         </ul>
       </nav>
-
-
+    </div>
+    <div class="wrap">
       {{{body}}}
-
       <footer>★</footer> <!-- end of homepage -->
     </div>
   </body>
