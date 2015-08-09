@@ -38,6 +38,9 @@ config.filters = {
 // with contents of its else block
 config.filterDefaultSort = { ts_created: -1 };
 
+config.post_karma_factor = .5; // 50%
+config.comment_karma_factor = .1; //  10%
+
 // borrowing from HN, more specifically
 // http://www.righto.com/2013/11/how-hacker-news-ranking-really-works.html
 

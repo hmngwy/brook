@@ -67,7 +67,7 @@ postResource.route("upvote", {
                doc.votes++;
                doc.save();
 
-               doc.op.votes_received++;
+               doc.op.post_votes_received++;
                doc.op.save();
              }
            }
@@ -179,7 +179,7 @@ commentResource.route("upvote", {
                doc.votes++;
                doc.save();
 
-               doc.op.votes_received++;
+               doc.op.comment_votes_received++;
                doc.op.save();
                //TODO increment op karma here
              }

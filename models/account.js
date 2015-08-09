@@ -2,15 +2,15 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var passportLocalMongoose = require('passport-local-mongoose');
 
+var config = require('../config');
 var validators = require('mongoose-validators');
 
-
-
 var Account = new Schema({
-  //sum of votes user received from all his posts and comments
+  quality : { type: Number, default: 0 },
   karma : { type: Number, default: 0 },
-  //sum of votes user received from all his posts and comments
-  votes_received : { type: Number, default: 0 },
+  // votes user received from all his posts and comments
+  comment_votes_received : { type: Number, default: 0 },
+  post_votes_received : { type: Number, default: 0 },
   // user post submissions
   posts : [ { type: Schema.Types.ObjectId, ref: 'Post' } ],
   // user comment submissions
@@ -41,17 +41,24 @@ Account.plugin(passportLocalMongoose, {
 Account.pre('save', function(next){
 
   // TODO compute karma like this
-  // base = posts + (comments/7)
-  // karma = base + sum_of_votes / base
-  // we divide comment count by 7, a comment is 1/7 of a post
-  // we dived the base so that users are encouraged to post quality content
 
-  // theory, this is more of a quality index
-  // with less posts and more votes, you get a higher number
-  // implies you have a high ratio of quality posts
-  var base = this.posts.length + (this.comments.length / 7);
-  var karma = (base + this.votes_received) / base;
 
+  // quality: sumVotes / ( (postCount/2) + (commentCount/10) )
+  // commentCount/10 because 1 post = 10 comments
+  // if you get at least 1 vote every 2 topics, and 1 vote every 10 comments
+  // you should at least get a quality index of 1
+  var activityFactor = (this.posts.length * config.post_karma_factor) +
+                      (this.comments.length * config.comment_karma_factor);
+  var sumOfVotesReceived = this.post_votes_received + this.comment_votes_received;
+  var quality = sumOfVotesReceived / activityFactor;
+
+  //karma: postVotes/2 + commentVotes/10
+  // you'll get 1 karma point for every 2 of your posts upvoted
+  // and another for every 10 of your comments upvoted
+  var karma = (this.post_votes_received * config.post_karma_factor) +
+              (this.comment_votes_received * config.comment_karma_factor);
+
+  this.quality = Math.round(quality);
   this.karma = Math.round(karma);
 
   next();

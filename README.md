@@ -23,7 +23,7 @@ The ranking algorithm is based on Ken Shirrif's findings ([here](http://www.righ
 
 - Does not use skip to paginate
 - Single sort parameter to rank submissions by score
-- Minimal scheduled jobs, subset processing, minimal inconsistency
+- Minimal scheduled jobs, minimal inconsistency from subset-processing
 - Maximum of two explicit nested DB queries (rough approx.)
 
 #### Roadmap

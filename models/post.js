@@ -39,7 +39,7 @@ Post.pre('save', function(next){
   var actualVotes = this.votes;
 
   // a comment is 1/7 the worth of a vote
-  var commentBump = this.comments.length / 7;
+  var commentBump = this.comments.length * config.comment_karma_factor;
   actualVotes += commentBump;
 
   // smaller the number, higher the penalty
