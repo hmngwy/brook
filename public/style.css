@@ -142,6 +142,11 @@ main {
   text-shadow: none;
   font-weight: bold;
 }
+.domain {
+  font-size: .8em;
+  opacity: .7;
+  font-weight: normal;
+}
 .link[target="_blank"]:visited:before {
   color: grey;
 }

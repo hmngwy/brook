@@ -92,7 +92,7 @@ That should explain the brevity of the Stylesheet and extra basic JS f(x).
       Array.prototype.forEach.call(links, function(el) {
         var domainStr = domain(el.getAttribute('href'));
         if(domainStr)
-          el.innerHTML += ' ('+domainStr+')';
+          el.innerHTML += ' <span class="domain">('+domainStr+')</span>';
       });
     });
   </script>
