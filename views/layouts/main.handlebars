@@ -42,6 +42,7 @@ That should explain the brevity of the Stylesheet and extra basic JS f(x).
           var rdata = JSON.parse(xmlhttp.responseText);
           f.setAttribute('status', 'ok');
           f.getElementsByClassName('response')[0].innerHTML = '<a href="/topic/'+rdata._id+'">'+rdata.title+'</a>';
+          f.reset();
         } else {
           var rdata = JSON.parse(xmlhttp.responseText);
           var fields = '', messages = '', i=0;
