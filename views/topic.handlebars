@@ -1,18 +1,6 @@
 <main>
   <div class="topic">
-    <div class="action">
-      <a onclick="return vote(this);" href="/xhr/post/{{post._id}}/upvote" class="act_upvote" {{isUpvotedPost post._id}}></a>
-      <span class="votes">{{post.votes}}</span>
-    </div>
-    <div class="title">
-      <a {{#if post.url}}target="_blank" href="{{post.url}}"{{/if}} {{#unless post.url}}href="/topic/{{post._id}}"{{/unless}}class="link" >{{post.title}}</a>
-    </div>
-    <div class="meta">
-      <!-- {{post.score}} - {{post.score_c}} -->
-      <a href="/user/{{post.op.username}}" class="byline">{{post.op.username}}</a>  <span class="karma">{{post.op.karma}}</span> &mdash;
-      <span class="timestamp">{{timeFromNow post.pretty_time}}</span> &mdash;
-      <span class="comment_count">{{post.comment_count}} comments</span>
-    </div>
+    {{> topic_item post=post}}
     <div class="body">
       {{post.body}}
     </div>

@@ -3,25 +3,11 @@
 <main>
   {{#if posts}}
   <ol id="topic_list">
-    {{#posts}}
+    {{#each posts}}
     <li>
-      <div class="action">
-        <a onclick="return vote(this);" href="/xhr/post/{{_id}}/upvote" class="act_upvote" {{isUpvotedPost _id}}></a>
-        <span class="votes">{{votes}}</span>
-      </div>
-      <div class="title">
-        <a {{#if url}}target="_blank" href="{{url}}"{{/if}} {{#unless url}}href="/topic/{{_id}}"{{/unless}}class="link">{{title}}</a>
-      </div>
-      <div class="meta">
-        <!-- {{score}} - {{score_c}} -->
-        <a href="/user/{{op.username}}" class="byline">{{op.username}}</a> <span class="karma">{{op.karma}}</span> &mdash;
-        <span class="timestamp">{{timeFromNow ts_created}}</span>
-        <span class="channel">{{#unless @root.channel}}in <a href="/~{{channel}}">{{channel}}</a>{{/unless}} {{#if filter_tags}}&#8250; {{#each filter_tags}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}{{/if}}</span> &mdash;
-        <a href="/topic/{{_id}}" class="comment_count">{{count comments}} comments</a>
-        <!-- in <a href="#" class="channel">{{channel}}</a> -->
-      </div>
+    {{> topic_item post=this}}
     </li>
-    {{/posts}}
+    {{/each}}
   </ol>
   {{else}}
   <p class="nothing">

@@ -1,0 +1,15 @@
+<div class="action">
+  <a onclick="return vote(this);" href="/xhr/post/{{post._id}}/upvote" class="act_upvote" {{isUpvotedPost post._id}}></a>
+  <span class="votes">{{post.votes}}</span>
+</div>
+<div class="title">
+  <a {{#if post.url}}target="_blank" href="{{post.url}}"{{/if}} {{#unless post.url}}href="/topic/{{post._id}}"{{/unless}}class="link">{{post.title}}</a>
+</div>
+<div class="meta">
+  <!-- {{post.score}} - {{post.score_c}} -->
+  <a href="/user/{{post.op.username}}" class="byline">{{post.op.username}}</a> <span class="karma">{{post.op.karma}}</span> &mdash;
+  <span class="timestamp">{{timeFromNow post.ts_created}}</span>
+  <span class="channel">{{#unless @root.channel}}in <a href="/~{{post.channel}}">{{post.channel}}</a>{{/unless}} {{#if post.filter_tags}}&#8250; {{#each post.filter_tags}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}{{/if}}</span> &mdash;
+  <a href="/topic/{{post._id}}" class="comment_count">{{count post.comments}} comments</a>
+  <!-- in <a href="#" class="channel">{{post.channel}}</a> -->
+</div>
