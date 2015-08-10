@@ -445,8 +445,14 @@ footer {
   font-size: 2em;
   line-height: 2em;
 }
+.post-toggle {
+  cursor: pointer;
+}
 /*triggers */
-[submit="on"] #submit_form {
+#postform {
+  display: none;
+}
+[post="on"] #postform {
   display: block;
 }
 @media only screen and (min-width : 667px) {
@@ -468,5 +474,10 @@ footer {
     }
   .wrap > * {
     padding: 0 1em;
+  }
+  .post-toggle {
+    position: absolute;
+    right: 0;
+    top: 1em;
   }
 }

@@ -11,5 +11,6 @@
     <li><a href="/{{@key}}">{{this.name}}</a></li>
     {{/each}}
     {{/if}}
+    <li class="post-toggle"><a onclick="return toggleForm()">Post a topic {{#if channel}}in ~{{channel}}{{/if}}</a></li>
   </ul>
 </nav>

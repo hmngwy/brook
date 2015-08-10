@@ -60,6 +60,17 @@ That should explain the brevity of the Stylesheet and extra basic JS f(x).
       return false;
     }
 
+    function toggleForm(a) {
+      var body = document.getElementsByTagName('body')[0];
+
+      if(body.getAttribute('post', 'on')!=='on') {
+        body.setAttribute('post', 'on');
+      } else {
+        body.setAttribute('post', 'off');
+      }
+
+      return false;
+    }
     function vote(a) {
       a.setAttribute("voted", "");
       var ping = new Image();
