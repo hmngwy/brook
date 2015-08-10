@@ -2,8 +2,8 @@ var config = {};
 
 config.port = 7001;
 
-config.agendaConnectionString = 'localhost/tbb';
-config.mongoConnectionString = 'mongodb://localhost/tbb';
+config.agendaConnectionString = process.env.schedulerDbString || 'localhost/tbb';
+config.mongoConnectionString = process.env.mongoDbString || 'mongodb://localhost/tbb';
 config.siteTitle = "BROOK";
 config.pageCount = 10;
 config.scoreRefreshInterval = '5 minutes';
