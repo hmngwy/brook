@@ -56,7 +56,9 @@ Push corresponding strings to Post.flags[] to moderate posts.
 
 #### Demo
 
-Soon.
+The demo can be found here: [brooknews.herokuapp.com](http://brooknews.herokuapp.com/)
+
+Please take note, I nerf the DB from time to time.
 
 #### Screenshots
 
