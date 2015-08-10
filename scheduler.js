@@ -10,7 +10,7 @@ agenda.define('recalculate scores', function(job, done) {
   Post.find({
     ts_created: {'$gte': moment().subtract(24, 'hours').valueOf() }
   })
-  .limit(config.pagCount*10)
+  .limit(config.pageCount*10)
   .exec(function(err, posts){
     _.each(posts, function(post){
       // TODO needs a condition here, so we don't have to touch all posts
