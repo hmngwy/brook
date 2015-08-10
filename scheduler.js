@@ -5,6 +5,8 @@ var Agenda = require('agenda');
 var config = require('./config');
 
 var agenda = new Agenda({db: { address: config.agendaConnectionString}});
+
+// we need this scheduler because posts.score has a time factor
 agenda.define('recalculate scores', function(job, done) {
 
   Post.find({
