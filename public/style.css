@@ -62,7 +62,7 @@ nav.main {
 .fullwidth {
   max-width: 100%;
 }
-.wrap > *, .fullwidth > * {
+.fullwidth > * {
   padding: 0 1em;
 }
 .fullwidth > * {
@@ -466,4 +466,7 @@ footer {
       top: 1em;
       display: inline-block;
     }
+  .wrap > * {
+    padding: 0 1em;
+  }
 }
