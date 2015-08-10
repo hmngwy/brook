@@ -112,7 +112,6 @@ main {
 .topic {
   margin-bottom: 1.4em;
   position: relative; /*so .act_upvote lines up per li*/
-  margin-left: 3em;
 }
 .nothing {
   text-align: center;
@@ -201,11 +200,11 @@ a {
   background-image: none;
 }
 .action {
-  position: absolute;
-  right: calc(100% + 1em);
-  top: 0;
+  vertical-align: middle;
+  display: inline-block;
   background-color: #E8E8E8;
   border-radius: 5px;
+  margin-right: 1em;
 }
 .votes {
   display: block;
@@ -213,6 +212,10 @@ a {
   font-size: .6em;
   font-weight: bold;
   color: grey;
+}
+.topic_wrap {
+  vertical-align: middle;
+  display: inline-block;
 }
 .karma {
   font-size: .8em;
@@ -247,8 +250,7 @@ a {
   background-color: white;
   cursor: default;
 }
-.comments .action,
-.topic .action {
+.comments .action {
   position: initial;
   float: left;
   margin-right: .75em;
