@@ -51,7 +51,6 @@ nav.page a {
   background-image: none;
 }
 nav.main {
-  font-weight: 300;
   color: whitesmoke;
 }
 .wrap {
@@ -63,17 +62,14 @@ nav.main {
   max-width: 100%;
 }
 .fullwidth > * {
-  padding: 0 1em;
-}
-.fullwidth > * {
   max-width: 72ch;
   margin: auto;
-  box-sizing: border-box;
+  padding: 0 1em;
 }
 .navmain-wrapper {
   background-color: #2a2a2a;
 }
-.invitation {
+.wrap > .invitation {
   text-align: center;
   border-radius: 2px;
   border: 1px solid lightgrey;
@@ -483,9 +479,6 @@ footer {
       top: 1em;
       display: inline-block;
     }
-  .wrap > * {
-    padding: 0 1em;
-  }
   .post-toggle {
     position: absolute;
     right: 0;
