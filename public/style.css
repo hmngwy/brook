@@ -133,6 +133,7 @@ main {
   margin-left: 0;
 }
 .link {
+  position: relative;
   display: inline-block;
   text-shadow: none;
   font-weight: bold;
@@ -260,10 +261,6 @@ a {
 }
 .comments .invitation {
   display: none;
-}
-.topic .link {
-  position: relative;
-  display: inline;
 }
 .meta {
   color: #555;
