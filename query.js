@@ -24,10 +24,10 @@ module.exports = function buildQueryParams(filter, n){
       return defaultQueryOpts(selectedFilter.findByTag, getBaseWhere(n));
     }
   } else {
-    return {}
+    // return {}
     // 404?
-    //var error = new Error('Page not found')
-    //error.status = 404;
-    //throw error;
+    var error = new Error('Page not found')
+    error.status = 404;
+    throw error;
   }
 }
