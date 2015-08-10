@@ -252,6 +252,9 @@ a {
 .comments .action {
   margin-right: .5em;
 }
+.comments .invitation {
+  display: none;
+}
 .topic .link {
   position: relative;
   display: inline;

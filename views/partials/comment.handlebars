@@ -1,4 +1,4 @@
-{{#if user}}
+{{#if @root.user}}
 <form class="reply_form" action="/xhr/comment" method="post" onsubmit="return send(this, true)">
   <input type="hidden" name="pid" value="{{pid}}">
   <input type="hidden" name="cid" value="{{cid}}">
@@ -8,6 +8,6 @@
 </form>
 {{/if}}
 
-{{#unless user}}
+{{#unless @root.user}}
   <p class="invitation"><a href="/register" class="u">Register</a> or <a href="/login" class="u">login</a> to comment</p>
 {{/unless}}
