@@ -16,8 +16,8 @@ The ranking algorithm is based on Ken Shirrif's findings ([here](http://www.righ
 - Topic ranking (base on [this](http://www.righto.com/2013/11/how-hacker-news-ranking-really-works.html))
 - Frontpage, shows all submissions regardless of channel
 - Channels, like subreddits
-- Frontpage and Channel filters, e.g. New, Show, Ask
-- Configurable filters, add, remove, etc.
+- Configurable Filters, Global/Frontpage and Channel Exclusive (New, Show, Ask)
+- 
 
 #### Technical features
 
@@ -29,17 +29,19 @@ The ranking algorithm is based on Ken Shirrif's findings ([here](http://www.righ
 #### Roadmap
 ###### These are not final, and may change during implementation usually for performance reasons
 
-**0. User Moderation**, freshman grace period, banning, hellban
+**0. User f()**, channel bookmarking
 
-**1. Channel exclusive filters**, defined by the editors
+**1. User Moderation**, newbie silence, recent post silence (reduced with account age), banning, hellban
 
-**2. Moderation UI**, may it be terminal based or web. Currently moderation can only be done directly to the database. This may be an entirely separate project.
+**2. Channel exclusive filters**, defined by the editors
 
-**2.A. User roles**
+**3. Moderation UI**, may it be terminal based or web. Currently moderation can only be done directly to the database. This may be an entirely separate project.
 
-**3. Rate limiting**
+**3.A. User roles**
 
-**4. Search**, though I am not sure if this is something I want, keyword indexing is expensive
+**4. Rate limiting**
+
+**5. Search**, though I am not sure if this is something I want, keyword indexing is expensive
 
 #### Usage
 
