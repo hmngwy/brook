@@ -16,8 +16,7 @@ The ranking algorithm is based on Ken Shirrif's findings ([here](http://www.righ
 - Topic ranking (base on [this](http://www.righto.com/2013/11/how-hacker-news-ranking-really-works.html))
 - Frontpage, shows all submissions regardless of channel
 - Channels, like subreddits
-- Configurable Filters, Global/Frontpage and Channel Exclusive (New, Show, Ask)
-- 
+- Configurable Filters, on Global/Frontpage and Channel Exclusive (New, Show, Ask)
 
 #### Technical features
 
