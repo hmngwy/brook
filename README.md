@@ -1,8 +1,8 @@
 [![Join the chat at https://gitter.im/hmngwy/brook](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hmngwy/brook?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-**Brook** is a linkboard heavily inspired by HN. It runs on Node.JS and MongoDB.
+**Brook** is a fast and lean linkboard inspired by Hacker News (clone) with a readable interface for desktop and mobile. Runs on Node.JS and MongoDB.
 
-Written with both frontend brevity and delivery speed in mind, so beware the basic scripting and vanilla CSS. *(gasp!)*
+Written with both frontend brevity and delivery speed in mind. Please beware the basic scripting and vanilla CSS. *(gasp!)*
 
 The ranking algorithm is based on Ken Shirrif's findings ([here](http://www.righto.com/2013/11/how-hacker-news-ranking-really-works.html) and [here](http://www.righto.com/2009/06/how-does-newsyc-ranking-work.html)) on his research about YCombinator's Hacker News ranking.
 
