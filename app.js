@@ -65,7 +65,7 @@ app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
 
 // uncomment after placing your favicon in /public
-app.use(favicon(__dirname + '/public/favicon.ico'));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended':'true'}));
@@ -74,7 +74,13 @@ app.use(methodOverride());
 app.use(cookieParser());
 app.use(session({ keys: ['secretkey1', 'secretkey2', '...']}));
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(favicon(__dirname + '/public/favicon.ico'));
+
+if(app.get('env') === 'development') {
+  app.use(express.static(path.join(__dirname, 'public')));
+} else {
+  app.use(express.static(path.join(__dirname, 'dist/public')));
+}
 
 // Configure passport middleware
 app.use(passport.initialize());
