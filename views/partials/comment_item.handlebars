@@ -5,13 +5,12 @@
     <a onclick="return vote(this);" href="/xhr/comment/{{_id}}/upvote" class="act_upvote" {{isUpvotedComment _id}}></a>
     <span class="votes">{{votes}}</span>
   </div>
-  <div class="body">
+  <div class="body comment_wrap">
     <a href="#" class="byline">{{op.username}}</a>  <span class="karma">{{op.karma}}</span>
     <span class="timestamp">{{timeFromNow ts_created}}</span>
     {{body}}
   </div>
   {{> comment type="thread" pid=../pid cid=id}}
-
   <ul>
     {{> comment_item c=responses pid=../pid}}
   </ul>

@@ -110,7 +110,7 @@ main {
 }
 #topic_list > li,
 .topic {
-  margin-bottom: 1.4em;
+  margin-bottom: 2em;
   position: relative; /*so .act_upvote lines up per li*/
 }
 .nothing {
@@ -119,6 +119,7 @@ main {
 }
 .filters {
   font-weight: bold;
+  margin: 2em 0;
 }
 .filters li:first-of-type a {
   font-weight: normal;
@@ -214,9 +215,10 @@ a {
   font-weight: bold;
   color: grey;
 }
-.topic_wrap {
+.topic_wrap, .comment_wrap {
   vertical-align: middle;
   display: inline-block;
+  max-width: calc(100% - 3.9em);
 }
 .karma {
   font-size: .8em;
@@ -371,9 +373,7 @@ form[status="bad"] button {
   padding-left: 1.8em;
 }
 .comments .body {
-  padding-left: 2ch;
   min-height: 2.3em;
-  padding-top: .5ch;
   margin-bottom: .5ch;
 }
 .comments .byline,
@@ -421,7 +421,7 @@ form.reply_form button {
   position: absolute;
   top: 0;
   right: 0;
-  height: 2.58em;
+  height: 2.59em;
 }
 .reply_form textarea {
     width: calc(100% - 5em);
