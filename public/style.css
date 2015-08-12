@@ -113,6 +113,9 @@ main {
   margin-bottom: 2em;
   position: relative; /*so .act_upvote lines up per li*/
 }
+.breadcrumb {
+  margin-bottom: 1em;
+}
 .nothing {
   text-align: center;
   padding: 2em 0;
@@ -169,6 +172,7 @@ a {
 .textwall a,
 .user_list a,
 .filters a,
+.breadcrumb a,
 .u,
 .next {
   text-decoration: none;
@@ -186,6 +190,7 @@ a {
   .response a,
   .textwall a,
   .user_list a,
+  .breadcrumb a,
   .filters a,
   .next {
     background-image: -webkit-linear-gradient(rgba(70, 70, 70, 0.25) 0%, rgb(70, 70, 70) 100%);

@@ -1,4 +1,5 @@
 <main>
+  <div class="breadcrumb">{{#unless @root.channel}}In <a href="/~{{post.channel}}">{{post.channel}}</a>{{/unless}} {{#if post.filter_tags}}&#8250; {{#each post.filter_tags}}{{#if @last}}<a href="/~{{post.channel}}/{{this}}">{{this}}</a>{{else}}<a href="/~{{post.channel}}/{{this}}">{{this}}</a>, {{/if}}{{/each}}{{/if}}</div>
   <div class="topic">
     {{> topic_item post=post}}
     <div class="body">
