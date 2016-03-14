@@ -227,8 +227,6 @@ a {
   max-width: calc(100% - 3.9em);
 }
 .karma {
-  font-size: .8em;
-  font-weight: bold;
   color: grey;
 }
 .karma:before {content: '[';}
@@ -366,6 +364,9 @@ form[status="bad"] button {
 .comments > ul {
   border: 0;
 }
+.comments li ul {
+    margin-left: 0.65em;
+}
 .comments li {
   box-sizing: border-box;
   position: relative;
@@ -380,17 +381,12 @@ form[status="bad"] button {
 }
 .comments .body {
   min-height: 2.3em;
-  margin-bottom: .5ch;
 }
-.comments .byline,
-.comments .timestamp {
-  font-weight: bold;
-}
-.comments .timestamp {
+.comments .timestamp, .comments .byline {
   color: #777;
 }
 .comments .act_upvote {
-    padding: .5em .2em;
+    padding: .25em .2em;
 }
 .comments form {
   margin-bottom: 0;
