@@ -161,6 +161,6 @@ if (app.get('env') === 'production') {
 
 
 var scheduler = require('./scheduler');
-scheduler.start();
+//scheduler.start();
 
 module.exports = app;
