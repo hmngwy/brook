@@ -4,7 +4,14 @@ var _ = require('underscore');
 var Agenda = require('agenda');
 var config = require('./config');
 
-var agenda = new Agenda({db: { address: config.agendaConnectionString}});
+var agenda = new Agenda({db: { address: config.agendaConnectionString}}, function(err) {
+  if (err) {
+    console.log(err);
+    throw err;
+  }
+  agenda.emit('ready');
+  agenda.start();
+});
 
 // we need this scheduler because posts.score has a time factor
 agenda.define('recalculate scores', function(job, done) {
