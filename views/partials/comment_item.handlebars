@@ -8,7 +8,9 @@
   <div class="body comment_wrap">
     <a href="#" class="byline">{{op.username}}</a>  <span class="karma">{{op.karma}}</span>
     <span class="timestamp">{{timeFromNow ts_created}}</span>
-    {{body}}
+    <div class="text">
+      {{body}}
+    </div>
   </div>
   {{> comment type="thread" pid=../pid cid=id}}
   <ul>
