@@ -17,6 +17,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var app = express();
 
+// gzip
 app.use(compression());
 
 var hbs = exphbs.create({
