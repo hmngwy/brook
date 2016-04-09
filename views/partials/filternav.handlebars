@@ -1,19 +1,16 @@
 <nav class="filters">
   <ul>
+    <li><a href="/"></a></li>
     {{#if channel}}
-    <li><a href="/~{{channel}}">~{{channel}}</a></li>
-    {{#each config.filters}}
-    <li><a href="/~{{@root.channel}}/{{@key}}">{{this.name}}</a></li>
-    {{/each}}
-    {{else}}
-    <li><a href="/">Frontpage</a></li>
-    {{#each config.filters}}
-    <li><a href="/{{@key}}">{{this.name}}</a></li>
-    {{/each}}
+      <li><a href="/~{{channel}}">{{channel}}</a></li>
+      {{#each config.filters}}
+      <li><a href="/~{{@root.channel}}/{{@key}}">{{this.name}}</a></li>
+      {{/each}}
     {{/if}}
-
-    {{#if @root.user}}
-    <li class="post-toggle"><a onclick="return toggleForm()">Post a topic {{#if channel}}in ~{{channel}}{{/if}}</a></li>
-    {{/if}}
+    {{#unless channel}}
+      {{#each config.filters}}
+      <li><a href="/{{@key}}">{{this.name}}</a></li>
+      {{/each}}
+    {{/unless}}
   </ul>
 </nav>

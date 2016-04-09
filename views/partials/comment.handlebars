@@ -1,5 +1,5 @@
 {{#if @root.user}}
-<form class="reply_form" action="/xhr/comment" method="post" onsubmit="return send(this, true)">
+<form id="comment-reply-{{cid}}" class="reply_form" action="/xhr/comment" method="post" onsubmit="return send(this, true)">
   <input type="hidden" name="pid" value="{{pid}}">
   <input type="hidden" name="cid" value="{{cid}}">
   <input type="hidden" name="type" value="{{type}}">

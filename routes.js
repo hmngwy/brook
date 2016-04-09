@@ -112,7 +112,7 @@ router.get('/topic/:id', function(req, res) {
         'responses.responses.responses.responses', function(err, data){
 
         // TODO Cache 'data'
-        res.render('topic', { user: req.user, post: post, config: config });
+        res.render('topic', { user: req.user, post: post, config: config, channel: post.channel });
       });
 
     }

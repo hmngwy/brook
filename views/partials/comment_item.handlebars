@@ -1,15 +1,16 @@
 {{#each c}}
 <li id="comment-{{_id}}">
   <a name="comment-{{_id}}"></a>
-  <div class="action">
+  {{!-- <div class="action">
     <a onclick="return vote(this);" href="/xhr/comment/{{_id}}/upvote" class="act_upvote" {{isUpvotedComment _id}}></a>
     <span class="votes">{{votes}}</span>
-  </div>
+  </div> --}}
   <div class="body comment_wrap">
-    <a href="#" class="byline">{{op.username}}</a>  <span class="karma">{{op.karma}}</span>
-    <span class="timestamp">{{timeFromNow ts_created}}</span>
     <div class="text">
       {{body}}
+    </div>
+    <div class="meta">
+    <a href="#" class="byline">{{op.username}}</a><span class="karma">{{op.karma}}</span> <span class="timestamp">{{timeFromNow ts_created}}</span> &mdash; <a href="#comment-reply-{{_id}}" onclick="document.getElementById('comment-reply-{{_id}}').style.display='block'">Reply</a>
     </div>
   </div>
   {{> comment type="thread" pid=../pid cid=id}}

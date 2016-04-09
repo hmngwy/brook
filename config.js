@@ -1,6 +1,6 @@
 var config = {};
 
-config.port = process.env.PORT || 7001;
+config.port = process.env.PORT || 7070;
 
 config.agendaConnectionString = process.env.schedulerDbString || 'localhost/tbb';
 config.mongoConnectionString = process.env.mongoDbString || 'mongodb://localhost/tbb';

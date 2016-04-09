@@ -54,7 +54,7 @@ var hbs = exphbs.create({
     },
     timeFromNow: function (date, context) {
       // console.log(context);
-      return moment(date).fromNow();
+      return moment(date).fromNow(true);
     },
     count: function (array, context) {
       // console.log(context);
